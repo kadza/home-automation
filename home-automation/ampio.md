@@ -1,3 +1,7 @@
+# Docker
+Setting up Docker on Pi: https://dev.to/rohansawant/installing-docker-and-docker-compose-on-the-raspberry-pi-in-5-simple-steps-3mgl
+docker rm --force redis
+sudo docker container start influxdb &
 # Charts
 
 https://gabrieltanner.org/blog/grafana-sensor-visualization
@@ -55,10 +59,14 @@ https://www.eclipse.org/lists/mosquitto-dev/msg01729.html
 
 ## Grafnana
 
+
 When configuring influxdb data source use acess server default and provide db addres that's accessible from the grafan server.
 http://influxdb:8086
 
 # Ampio
+
+ssh port 2022
+ssh root@ampio -p 2022
 
 ## SmartHomeManager
 
@@ -78,3 +86,14 @@ Caused by: java.lang.ClassNotFoundException: javafx.scene.image.Image
 * Install and configure jdk 11 https://adoptopenjdk.net/?variant=openjdk11&jvmVariant=hotspot
 * Install and configure java fx https://gluonhq.com/products/javafx/
 * Run: java --module-path $FX_PATH --add-modules javafx.controls -jar /Users/lkujawia/dev/ampio/SmartHomeManager/SmartHomeManager.jar
+
+
+## Node-Red
+node-red location ~/.node-red/
+Installing custom package
+https://nodered.org/docs/user-guide/runtime/adding-nodes
+
+npm-pack
+
+scp -P 2022 node-red-contrib-komfovent-0.3.3.tgz root@ampio:/root/custom
+tar -zxvf file_name.tar.gz
