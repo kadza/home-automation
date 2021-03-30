@@ -1,0 +1,13 @@
+url: "https://kadza.github.io/home-automation/"
+
+header_pages:
+  - index.md
+  - system-overview.md
+  - components/contents.md
+  - dev/contents.md
+  - ampio/contents.md
+
+style: dark
+
+# Build settings
+remote_theme: b2a3e8/jekyll-theme-console
