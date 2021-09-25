@@ -25,6 +25,17 @@ services:
     volumes:
       - grafana-storage:/var/lib/grafana
 
+  nodered:
+    image: nodered/node-red:2.0.5
+    container_name: node-red
+    ports:
+      - "1880:1880"
+    depends_on:
+      - influxdb
+    volumes:
+      - nodered-storage:/data
+
 volumes:
   influxdb-storage:
   grafana-storage:
+  nodered-storage:
