@@ -8,12 +8,12 @@ services:
       - "8083:8083"
       - "8086:8086"
       - "8090:8090"
-    environment:
-      - INFLUXDB_DB=sensors
-      - INFLUXDB_USER=ampio
-      - INFLUXDB_USER_PASSWORD=ampio
+    env_file:
+      - .env
     volumes:
       - influxdb-storage:/var/lib/influxdb
+    labels:
+      - docker-volume-backup.stop-during-backup=true
 
   grafana:
     image: grafana/grafana:latest
@@ -26,16 +26,25 @@ services:
       - grafana-storage:/var/lib/grafana
 
   nodered:
-    image: nodered/node-red:2.0.5
+    image: my-node-red
     container_name: node-red
     ports:
       - "1880:1880"
+    env_file:
+      - .env
     depends_on:
       - influxdb
+
+  backup:
+    image: offen/docker-volume-backup:latest
+    env_file:
+      - .env
     volumes:
-      - nodered-storage:/data
+      - influxdb-storage:/backup/influxdb-backup:ro
+      - grafana-storage:/backup/grafana-backup:ro
+      - nodered-storage:/backup/nodered-backup:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
 
 volumes:
   influxdb-storage:
   grafana-storage:
-  nodered-storage:
