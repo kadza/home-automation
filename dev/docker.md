@@ -14,3 +14,4 @@ sudo chmod 777 -R /var/snap/docker/common/var-lib-docker/volumes/home-automation
 * sudo docker ps
 * sudo docker logs home-automation_backup_1 --tail=10
 * sudo docker stop home-automation_backup_1
+* Remove all volumes: docker volume rm $(docker volume ls -q)
