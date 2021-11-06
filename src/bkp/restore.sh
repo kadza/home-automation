@@ -9,6 +9,7 @@ cd "$(dirname "$0")"
 mkdir tmp
 tar -C ./tmp -xvf ./data/backup.tar.gz
 
+# IMPORTANT Check the volume name with: docker volume ls
 docker run -id --name influxdb_restore -v home-automation_influxdb-storage:/influxdb_restore alpine
 docker cp ./tmp/backup/influxdb-backup/. influxdb_restore:/influxdb_restore
 docker stop influxdb_restore
