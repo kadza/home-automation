@@ -11,3 +11,4 @@
 * sudo docker stop home-automation_backup_1
 * Remove all volumes: docker volume rm $(docker volume ls -q)
 * Run command in a container as root: docker exec -u root -t -i grafana /bin/bash -c 'chown grafana:root /var/lib/grafana/grafana.db'
+* Build my-node-red image: docker build -t my-node-red .
