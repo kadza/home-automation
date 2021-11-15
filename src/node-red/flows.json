@@ -1,28 +1,89 @@
 [
-    { "id": "10842f61.22bf81", "type": "tab", "label": "Temperature", "disabled": false, "info": "" },
-    { "id": "6bebbd23.6d57e4", "type": "tab", "label": "Ventillation", "disabled": false, "info": "" },
-    { "id": "cbbff5e9.216548", "type": "tab", "label": "Weather", "disabled": false, "info": "" },
-    { "id": "c1c0d025.7190c", "type": "tab", "label": "Blinds", "disabled": false, "info": "" },
-    { "id": "34d5b010.8abea", "type": "tab", "label": "Test", "disabled": false, "info": "" },
+    {
+        "id": "10842f61.22bf81",
+        "type": "tab",
+        "label": "Temperature",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "6bebbd23.6d57e4",
+        "type": "tab",
+        "label": "Ventillation",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "cbbff5e9.216548",
+        "type": "tab",
+        "label": "Weather",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "c1c0d025.7190c",
+        "type": "tab",
+        "label": "Blinds",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "34d5b010.8abea",
+        "type": "tab",
+        "label": "Test",
+        "disabled": false,
+        "info": ""
+    },
     {
         "id": "13cbf77f.87a069",
         "type": "subflow",
-        "name": "Recu get | InfluxDb",
+        "name": "Recu read | InfluxDb",
         "info": "",
         "category": "",
         "in": [],
         "out": [],
         "env": [
-            { "name": "fieldName", "type": "str", "value": "" },
-            { "name": "measurementName", "type": "str", "value": "" }
+            {
+                "name": "fieldName",
+                "type": "str",
+                "value": ""
+            },
+            {
+                "name": "measurementName",
+                "type": "str",
+                "value": ""
+            }
         ],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
+        "id": "f33ae946a1b71124",
+        "type": "subflow",
+        "name": "Ampio read | InfluxDb",
+        "info": "",
+        "category": "",
+        "in": [],
+        "out": [],
+        "env": [
+            {
+                "name": "topic",
+                "type": "str",
+                "value": ""
+            },
+            {
+                "name": "measurement",
+                "type": "str",
+                "value": ""
+            }
+        ],
+        "meta": {},
         "color": "#DDAA99"
     },
     {
         "id": "49824722.da0c98",
         "type": "influxdb",
-        "z": "",
-        "hostname": "wyse",
+        "hostname": "influxdb",
         "port": "8086",
         "protocol": "http",
         "database": "sensors",
@@ -36,7 +97,6 @@
     {
         "id": "8ed427c6.e1f408",
         "type": "komfoventConfig",
-        "z": "",
         "displayName": "recuperator",
         "siteName": "home",
         "ip": "192.168.1.127"
@@ -44,13 +104,13 @@
     {
         "id": "190e1795.e65c88",
         "type": "mqtt-broker",
-        "z": "",
         "name": "ampio",
         "broker": "192.168.1.104",
         "port": "1883",
         "clientid": "",
         "usetls": false,
         "compatmode": false,
+        "protocolVersion": 4,
         "keepalive": "60",
         "cleansession": true,
         "birthTopic": "",
@@ -64,830 +124,6 @@
         "willPayload": ""
     },
     {
-        "id": "f43e9898.ccfe78",
-        "type": "Ampio IN",
-        "z": "10842f61.22bf81",
-        "valtype": "t",
-        "mac": "87C4",
-        "ioid": "1",
-        "name": "salon temp",
-        "retainignore": "",
-        "srvaddress": "localhost",
-        "x": 200,
-        "y": 140,
-        "wires": [["140219cf.7ee416"]]
-    },
-    {
-        "id": "f707e198.39005",
-        "type": "influxdb out",
-        "z": "10842f61.22bf81",
-        "influxdb": "49824722.da0c98",
-        "name": "salon/temp",
-        "measurement": "salon/temp",
-        "precision": "",
-        "retentionPolicy": "",
-        "database": "",
-        "retentionPolicyV18Flux": "",
-        "org": "",
-        "bucket": "",
-        "x": 590,
-        "y": 140,
-        "wires": []
-    },
-    {
-        "id": "140219cf.7ee416",
-        "type": "function",
-        "z": "10842f61.22bf81",
-        "name": "parseFloat",
-        "func": "var floatValue = parseFloat(msg.payload,2);\n\nreturn { payload: floatValue };",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 390,
-        "y": 140,
-        "wires": [["f707e198.39005"]]
-    },
-    {
-        "id": "eadddd04.e7153",
-        "type": "Ampio IN",
-        "z": "10842f61.22bf81",
-        "valtype": "t",
-        "mac": "87C5",
-        "ioid": "1",
-        "name": "blanka temp",
-        "retainignore": "",
-        "srvaddress": "localhost",
-        "x": 210,
-        "y": 200,
-        "wires": [["2e0aad58.2ee5b2"]]
-    },
-    {
-        "id": "a178a4cf.15cdd8",
-        "type": "Ampio IN",
-        "z": "10842f61.22bf81",
-        "valtype": "t",
-        "mac": "87C5",
-        "ioid": "2",
-        "name": "leon temp",
-        "retainignore": "",
-        "srvaddress": "localhost",
-        "x": 200,
-        "y": 260,
-        "wires": [["621109b0.dac948"]]
-    },
-    {
-        "id": "2232900.169eb7",
-        "type": "Ampio IN",
-        "z": "10842f61.22bf81",
-        "valtype": "t",
-        "mac": "87C5",
-        "ioid": "3",
-        "name": "hol pietro temp",
-        "retainignore": "",
-        "srvaddress": "localhost",
-        "x": 220,
-        "y": 320,
-        "wires": [["66b28a55.eb5eb4"]]
-    },
-    {
-        "id": "2e0aad58.2ee5b2",
-        "type": "function",
-        "z": "10842f61.22bf81",
-        "name": "parseFloat",
-        "func": "var floatValue = parseFloat(msg.payload,2);\n\nreturn { payload: floatValue };",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 390,
-        "y": 200,
-        "wires": [["e8d71d3c.b90ce"]]
-    },
-    {
-        "id": "621109b0.dac948",
-        "type": "function",
-        "z": "10842f61.22bf81",
-        "name": "parseFloat",
-        "func": "var floatValue = parseFloat(msg.payload,2);\n\nreturn { payload: floatValue };",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 390,
-        "y": 260,
-        "wires": [["9138a6d4.23fa68"]]
-    },
-    {
-        "id": "66b28a55.eb5eb4",
-        "type": "function",
-        "z": "10842f61.22bf81",
-        "name": "parseFloat",
-        "func": "var floatValue = parseFloat(msg.payload,2);\n\nreturn { payload: floatValue };",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 390,
-        "y": 320,
-        "wires": [["c6d93116.d533b"]]
-    },
-    {
-        "id": "e8d71d3c.b90ce",
-        "type": "influxdb out",
-        "z": "10842f61.22bf81",
-        "influxdb": "49824722.da0c98",
-        "name": "blanka/temp",
-        "measurement": "blanka/temp",
-        "precision": "",
-        "retentionPolicy": "",
-        "x": 590,
-        "y": 200,
-        "wires": []
-    },
-    {
-        "id": "9138a6d4.23fa68",
-        "type": "influxdb out",
-        "z": "10842f61.22bf81",
-        "influxdb": "49824722.da0c98",
-        "name": "leon/temp",
-        "measurement": "leon/temp",
-        "precision": "",
-        "retentionPolicy": "",
-        "x": 580,
-        "y": 260,
-        "wires": []
-    },
-    {
-        "id": "c6d93116.d533b",
-        "type": "influxdb out",
-        "z": "10842f61.22bf81",
-        "influxdb": "49824722.da0c98",
-        "name": "holpietro/temp",
-        "measurement": "holpietro/temp",
-        "precision": "",
-        "retentionPolicy": "",
-        "x": 600,
-        "y": 320,
-        "wires": []
-    },
-    {
-        "id": "54df81f6.05d71",
-        "type": "Ampio IN",
-        "z": "10842f61.22bf81",
-        "valtype": "t",
-        "mac": "87C7",
-        "ioid": "1",
-        "name": "entrance temp",
-        "retainignore": "",
-        "srvaddress": "localhost",
-        "x": 220,
-        "y": 380,
-        "wires": [["ec2a3d85.ec911"]]
-    },
-    {
-        "id": "ec2a3d85.ec911",
-        "type": "function",
-        "z": "10842f61.22bf81",
-        "name": "parseFloat",
-        "func": "var floatValue = parseFloat(msg.payload,2);\n\nreturn { payload: floatValue };",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 390,
-        "y": 380,
-        "wires": [["27af2d3f.8deae2"]]
-    },
-    {
-        "id": "27af2d3f.8deae2",
-        "type": "influxdb out",
-        "z": "10842f61.22bf81",
-        "influxdb": "49824722.da0c98",
-        "name": "entrance/temp",
-        "measurement": "entrance/temp",
-        "precision": "",
-        "retentionPolicy": "",
-        "x": 600,
-        "y": 380,
-        "wires": []
-    },
-    {
-        "id": "b5f6da6.7b28928",
-        "type": "Ampio IN",
-        "z": "10842f61.22bf81",
-        "valtype": "t",
-        "mac": "87C4",
-        "ioid": "1",
-        "name": "bedroom temp",
-        "retainignore": "",
-        "srvaddress": "localhost",
-        "x": 220,
-        "y": 440,
-        "wires": [["af60897c.3c0948"]]
-    },
-    {
-        "id": "af60897c.3c0948",
-        "type": "function",
-        "z": "10842f61.22bf81",
-        "name": "parseFloat",
-        "func": "var floatValue = parseFloat(msg.payload,2);\n\nreturn { payload: floatValue };",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 390,
-        "y": 440,
-        "wires": [["7d65adb3.36d104"]]
-    },
-    {
-        "id": "7d65adb3.36d104",
-        "type": "influxdb out",
-        "z": "10842f61.22bf81",
-        "influxdb": "49824722.da0c98",
-        "name": "bedroom/temp",
-        "measurement": "bedroom/temp",
-        "precision": "",
-        "retentionPolicy": "",
-        "x": 600,
-        "y": 440,
-        "wires": []
-    },
-    {
-        "id": "25cce99e.872b16",
-        "type": "Ampio IN",
-        "z": "10842f61.22bf81",
-        "valtype": "t",
-        "mac": "87CC",
-        "ioid": "1",
-        "name": "bath1 temp",
-        "retainignore": "",
-        "srvaddress": "localhost",
-        "x": 210,
-        "y": 500,
-        "wires": [["175ac69e.6f9019"]]
-    },
-    {
-        "id": "175ac69e.6f9019",
-        "type": "function",
-        "z": "10842f61.22bf81",
-        "name": "parseFloat",
-        "func": "var floatValue = parseFloat(msg.payload,2);\n\nreturn { payload: floatValue };",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 390,
-        "y": 500,
-        "wires": [["19df3457.7824fc"]]
-    },
-    {
-        "id": "19df3457.7824fc",
-        "type": "influxdb out",
-        "z": "10842f61.22bf81",
-        "influxdb": "49824722.da0c98",
-        "name": "bath1/temp",
-        "measurement": "bath1/temp",
-        "precision": "",
-        "retentionPolicy": "",
-        "x": 590,
-        "y": 500,
-        "wires": []
-    },
-    {
-        "id": "53a254ad.33559c",
-        "type": "Ampio IN",
-        "z": "10842f61.22bf81",
-        "valtype": "t",
-        "mac": "87CC",
-        "ioid": "2",
-        "name": "laundry temp",
-        "retainignore": "",
-        "srvaddress": "localhost",
-        "x": 210,
-        "y": 560,
-        "wires": [["20bf8fd8.b42b"]]
-    },
-    {
-        "id": "20bf8fd8.b42b",
-        "type": "function",
-        "z": "10842f61.22bf81",
-        "name": "parseFloat",
-        "func": "var floatValue = parseFloat(msg.payload,2);\n\nreturn { payload: floatValue };",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 390,
-        "y": 560,
-        "wires": [["1ac822d4.90b82d"]]
-    },
-    {
-        "id": "1ac822d4.90b82d",
-        "type": "influxdb out",
-        "z": "10842f61.22bf81",
-        "influxdb": "49824722.da0c98",
-        "name": "laundry/temp",
-        "measurement": "laundry/temp",
-        "precision": "",
-        "retentionPolicy": "",
-        "x": 590,
-        "y": 560,
-        "wires": []
-    },
-    {
-        "id": "3e7f6663.c0c76a",
-        "type": "Ampio IN",
-        "z": "10842f61.22bf81",
-        "valtype": "t",
-        "mac": "87D2",
-        "ioid": "1",
-        "name": "bath0 temp",
-        "retainignore": "",
-        "srvaddress": "localhost",
-        "x": 210,
-        "y": 620,
-        "wires": [["dba9e241.b318"]]
-    },
-    {
-        "id": "dba9e241.b318",
-        "type": "function",
-        "z": "10842f61.22bf81",
-        "name": "parseFloat",
-        "func": "var floatValue = parseFloat(msg.payload,2);\n\nreturn { payload: floatValue };",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 390,
-        "y": 620,
-        "wires": [["adfc3690.a78498"]]
-    },
-    {
-        "id": "adfc3690.a78498",
-        "type": "influxdb out",
-        "z": "10842f61.22bf81",
-        "influxdb": "49824722.da0c98",
-        "name": "bath0/temp",
-        "measurement": "bath0/temp",
-        "precision": "",
-        "retentionPolicy": "",
-        "x": 590,
-        "y": 620,
-        "wires": []
-    },
-    {
-        "id": "ca61a383.8a8ac",
-        "type": "Ampio IN",
-        "z": "10842f61.22bf81",
-        "valtype": "t",
-        "mac": "87D2",
-        "ioid": "2",
-        "name": "guest temp",
-        "retainignore": "",
-        "srvaddress": "localhost",
-        "x": 210,
-        "y": 680,
-        "wires": [["a1ed3c2d.5a096"]]
-    },
-    {
-        "id": "a1ed3c2d.5a096",
-        "type": "function",
-        "z": "10842f61.22bf81",
-        "name": "parseFloat",
-        "func": "var floatValue = parseFloat(msg.payload,2);\n\nreturn { payload: floatValue };",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 390,
-        "y": 680,
-        "wires": [["98c50c4.f868af"]]
-    },
-    {
-        "id": "98c50c4.f868af",
-        "type": "influxdb out",
-        "z": "10842f61.22bf81",
-        "influxdb": "49824722.da0c98",
-        "name": "guest/temp",
-        "measurement": "guest/temp",
-        "precision": "",
-        "retentionPolicy": "",
-        "x": 590,
-        "y": 680,
-        "wires": []
-    },
-    {
-        "id": "c4146472.63fcc8",
-        "type": "Ampio IN",
-        "z": "10842f61.22bf81",
-        "valtype": "t",
-        "mac": "87D2",
-        "ioid": "3",
-        "name": "store temp",
-        "retainignore": "",
-        "srvaddress": "localhost",
-        "x": 200,
-        "y": 740,
-        "wires": [["4e143925.5883a8"]]
-    },
-    {
-        "id": "4e143925.5883a8",
-        "type": "function",
-        "z": "10842f61.22bf81",
-        "name": "parseFloat",
-        "func": "var floatValue = parseFloat(msg.payload,2);\n\nreturn { payload: floatValue };",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 390,
-        "y": 740,
-        "wires": [["2c048d4c.dd2582"]]
-    },
-    {
-        "id": "2c048d4c.dd2582",
-        "type": "influxdb out",
-        "z": "10842f61.22bf81",
-        "influxdb": "49824722.da0c98",
-        "name": "store/temp",
-        "measurement": "store/temp",
-        "precision": "",
-        "retentionPolicy": "",
-        "x": 590,
-        "y": 740,
-        "wires": []
-    },
-    {
-        "id": "d29847a5.a8ca78",
-        "type": "Ampio IN",
-        "z": "10842f61.22bf81",
-        "valtype": "o",
-        "mac": "87C4",
-        "ioid": "2",
-        "name": "guest valve",
-        "retainignore": "",
-        "srvaddress": "localhost",
-        "x": 210,
-        "y": 1080,
-        "wires": [["8f2dabda.167358"]]
-    },
-    {
-        "id": "68c316a.b1df1e8",
-        "type": "Ampio IN",
-        "z": "10842f61.22bf81",
-        "valtype": "o",
-        "mac": "87C4",
-        "ioid": "1",
-        "name": "garage valve",
-        "retainignore": "",
-        "srvaddress": "localhost",
-        "x": 210,
-        "y": 1140,
-        "wires": [["21494f53.6fc29"]]
-    },
-    {
-        "id": "7151fd45.0d25b4",
-        "type": "Ampio IN",
-        "z": "10842f61.22bf81",
-        "valtype": "o",
-        "mac": "87C4",
-        "ioid": "3",
-        "name": "bath0 valve",
-        "retainignore": "",
-        "srvaddress": "localhost",
-        "x": 210,
-        "y": 1200,
-        "wires": [["523a68e9.6be988"]]
-    },
-    {
-        "id": "844d5d80.248ea",
-        "type": "Ampio IN",
-        "z": "10842f61.22bf81",
-        "valtype": "o",
-        "mac": "87C4",
-        "ioid": "4",
-        "name": "living valve",
-        "retainignore": "",
-        "srvaddress": "localhost",
-        "x": 200,
-        "y": 1260,
-        "wires": [["16d502cc.3564ad"]]
-    },
-    {
-        "id": "f5efc276.de675",
-        "type": "Ampio IN",
-        "z": "10842f61.22bf81",
-        "valtype": "o",
-        "mac": "87C4",
-        "ioid": "5",
-        "name": "entrance valve",
-        "retainignore": "",
-        "srvaddress": "localhost",
-        "x": 220,
-        "y": 1320,
-        "wires": [["edacb152.9a455"]]
-    },
-    {
-        "id": "82a04fe3.fa582",
-        "type": "Ampio IN",
-        "z": "10842f61.22bf81",
-        "valtype": "o",
-        "mac": "87C4",
-        "ioid": "6",
-        "name": "bath1 valve",
-        "retainignore": "",
-        "srvaddress": "localhost",
-        "x": 210,
-        "y": 1380,
-        "wires": [["c60c7a7b.255c48"]]
-    },
-    {
-        "id": "9d55fbfc.7593f8",
-        "type": "influxdb out",
-        "z": "10842f61.22bf81",
-        "influxdb": "49824722.da0c98",
-        "name": "guest/heat/valve",
-        "measurement": "guest/heat/valve",
-        "precision": "",
-        "retentionPolicy": "",
-        "x": 600,
-        "y": 1080,
-        "wires": []
-    },
-    {
-        "id": "13103d8d.a722c2",
-        "type": "influxdb out",
-        "z": "10842f61.22bf81",
-        "influxdb": "49824722.da0c98",
-        "name": "bath0/heat/valve",
-        "measurement": "bath0/heat/valve",
-        "precision": "",
-        "retentionPolicy": "",
-        "x": 610,
-        "y": 1200,
-        "wires": []
-    },
-    {
-        "id": "947ebe34.e2",
-        "type": "influxdb out",
-        "z": "10842f61.22bf81",
-        "influxdb": "49824722.da0c98",
-        "name": "living/heat/valve",
-        "measurement": "living/heat/valve",
-        "precision": "",
-        "retentionPolicy": "",
-        "x": 600,
-        "y": 1240,
-        "wires": []
-    },
-    {
-        "id": "542b3ba7.37cbd4",
-        "type": "influxdb out",
-        "z": "10842f61.22bf81",
-        "influxdb": "49824722.da0c98",
-        "name": "entrance/heat/valve",
-        "measurement": "entrance/heat/valve",
-        "precision": "",
-        "retentionPolicy": "",
-        "x": 610,
-        "y": 1300,
-        "wires": []
-    },
-    {
-        "id": "7b7cad76.d71504",
-        "type": "influxdb out",
-        "z": "10842f61.22bf81",
-        "influxdb": "49824722.da0c98",
-        "name": "bath1/heat/valve",
-        "measurement": "bath1/heat/valve",
-        "precision": "",
-        "retentionPolicy": "",
-        "x": 610,
-        "y": 1360,
-        "wires": []
-    },
-    {
-        "id": "59b9beee.82c55",
-        "type": "influxdb out",
-        "z": "10842f61.22bf81",
-        "influxdb": "49824722.da0c98",
-        "name": "garage/heat/valve",
-        "measurement": "garage/heat/valve",
-        "precision": "",
-        "retentionPolicy": "",
-        "x": 610,
-        "y": 1140,
-        "wires": []
-    },
-    {
-        "id": "8f2dabda.167358",
-        "type": "function",
-        "z": "10842f61.22bf81",
-        "name": "parseFloat",
-        "func": "var floatValue = parseFloat(msg.payload,2);\n\nreturn { payload: floatValue };",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 410,
-        "y": 1080,
-        "wires": [["9d55fbfc.7593f8"]]
-    },
-    {
-        "id": "21494f53.6fc29",
-        "type": "function",
-        "z": "10842f61.22bf81",
-        "name": "parseFloat",
-        "func": "var floatValue = parseFloat(msg.payload,2);\n\nreturn { payload: floatValue };",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 410,
-        "y": 1120,
-        "wires": [["59b9beee.82c55"]]
-    },
-    {
-        "id": "523a68e9.6be988",
-        "type": "function",
-        "z": "10842f61.22bf81",
-        "name": "parseFloat",
-        "func": "var floatValue = parseFloat(msg.payload,2);\n\nreturn { payload: floatValue };",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 410,
-        "y": 1180,
-        "wires": [["13103d8d.a722c2"]]
-    },
-    {
-        "id": "16d502cc.3564ad",
-        "type": "function",
-        "z": "10842f61.22bf81",
-        "name": "parseFloat",
-        "func": "var floatValue = parseFloat(msg.payload,2);\n\nreturn { payload: floatValue };",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 410,
-        "y": 1240,
-        "wires": [["947ebe34.e2"]]
-    },
-    {
-        "id": "edacb152.9a455",
-        "type": "function",
-        "z": "10842f61.22bf81",
-        "name": "parseFloat",
-        "func": "var floatValue = parseFloat(msg.payload,2);\n\nreturn { payload: floatValue };",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 410,
-        "y": 1300,
-        "wires": [["542b3ba7.37cbd4"]]
-    },
-    {
-        "id": "c60c7a7b.255c48",
-        "type": "function",
-        "z": "10842f61.22bf81",
-        "name": "parseFloat",
-        "func": "var floatValue = parseFloat(msg.payload,2);\n\nreturn { payload: floatValue };",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 410,
-        "y": 1360,
-        "wires": [["7b7cad76.d71504"]]
-    },
-    {
-        "id": "f6265e70.cb185",
-        "type": "Ampio IN",
-        "z": "10842f61.22bf81",
-        "valtype": "t",
-        "mac": "87C4",
-        "ioid": "2",
-        "name": "wardrobe temp",
-        "retainignore": "",
-        "srvaddress": "localhost",
-        "x": 220,
-        "y": 800,
-        "wires": [["aab01082.6c63b"]]
-    },
-    {
-        "id": "6b3f8ff2.1b04",
-        "type": "Ampio IN",
-        "z": "10842f61.22bf81",
-        "valtype": "t",
-        "mac": "1",
-        "ioid": "2",
-        "name": "boiler temp",
-        "retainignore": "",
-        "srvaddress": "localhost",
-        "x": 210,
-        "y": 1020,
-        "wires": [["45597fcb.ddb42"]]
-    },
-    {
-        "id": "aab01082.6c63b",
-        "type": "function",
-        "z": "10842f61.22bf81",
-        "name": "parseFloat",
-        "func": "var floatValue = parseFloat(msg.payload,2);\n\nreturn { payload: floatValue };",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 390,
-        "y": 800,
-        "wires": [["cae6fb0b.c34e78"]]
-    },
-    {
-        "id": "45597fcb.ddb42",
-        "type": "function",
-        "z": "10842f61.22bf81",
-        "name": "parseFloat",
-        "func": "var floatValue = parseFloat(msg.payload,2);\n\nreturn { payload: floatValue };",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 390,
-        "y": 1020,
-        "wires": [["20310b5f.fd5fd4"]]
-    },
-    {
-        "id": "cae6fb0b.c34e78",
-        "type": "influxdb out",
-        "z": "10842f61.22bf81",
-        "influxdb": "49824722.da0c98",
-        "name": "wardrobe/temp",
-        "measurement": "wardrobe/temp",
-        "precision": "",
-        "retentionPolicy": "",
-        "x": 580,
-        "y": 800,
-        "wires": []
-    },
-    {
-        "id": "20310b5f.fd5fd4",
-        "type": "influxdb out",
-        "z": "10842f61.22bf81",
-        "influxdb": "49824722.da0c98",
-        "name": "boiler/temp",
-        "measurement": "boiler/temp",
-        "precision": "",
-        "retentionPolicy": "",
-        "x": 570,
-        "y": 1020,
-        "wires": []
-    },
-    {
-        "id": "558763ea.17db0c",
-        "type": "Ampio IN",
-        "z": "10842f61.22bf81",
-        "valtype": "t",
-        "mac": "87C4",
-        "ioid": "3",
-        "name": "external temp",
-        "retainignore": "",
-        "srvaddress": "localhost",
-        "x": 210,
-        "y": 860,
-        "wires": [["5fddfa46.f96d04"]]
-    },
-    {
-        "id": "5fddfa46.f96d04",
-        "type": "function",
-        "z": "10842f61.22bf81",
-        "name": "parseFloat",
-        "func": "var floatValue = parseFloat(msg.payload,2);\n\nreturn { payload: floatValue };",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 390,
-        "y": 860,
-        "wires": [["a2d1201.e4f00e"]]
-    },
-    {
-        "id": "a2d1201.e4f00e",
-        "type": "influxdb out",
-        "z": "10842f61.22bf81",
-        "influxdb": "49824722.da0c98",
-        "name": "external/temp",
-        "measurement": "external/temp",
-        "precision": "",
-        "retentionPolicy": "",
-        "x": 580,
-        "y": 860,
-        "wires": []
-    },
-    {
         "id": "c192e1aa.d5d25",
         "type": "komfoventNodeGet",
         "z": "13cbf77f.87a069",
@@ -895,14 +131,26 @@
         "user": "8ed427c6.e1f408",
         "x": 350,
         "y": 80,
-        "wires": [["94f6a381.7aec7"]]
+        "wires": [
+            [
+                "94f6a381.7aec7"
+            ]
+        ]
     },
     {
         "id": "77ce07a2.3ee228",
         "type": "inject",
         "z": "13cbf77f.87a069",
         "name": "fieldName",
-        "props": [{ "p": "payload" }, { "p": "topic", "vt": "str" }],
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
         "repeat": "600",
         "crontab": "",
         "once": false,
@@ -912,7 +160,11 @@
         "payloadType": "str",
         "x": 190,
         "y": 80,
-        "wires": [["c192e1aa.d5d25"]]
+        "wires": [
+            [
+                "c192e1aa.d5d25"
+            ]
+        ]
     },
     {
         "id": "94f6a381.7aec7",
@@ -926,7 +178,11 @@
         "finalize": "",
         "x": 510,
         "y": 80,
-        "wires": [["4a243c65.d60404"]]
+        "wires": [
+            [
+                "4a243c65.d60404"
+            ]
+        ]
     },
     {
         "id": "1a47e54f.a1068b",
@@ -947,9 +203,21 @@
         "z": "6bebbd23.6d57e4",
         "name": "Supply temp (C) get",
         "env": [
-            { "name": "fieldName", "value": "ai0", "type": "str" },
-            { "name": "measurementName", "value": "recu/supply-temp", "type": "str" },
-            { "name": "interval", "value": "10", "type": "str" }
+            {
+                "name": "fieldName",
+                "value": "ai0",
+                "type": "str"
+            },
+            {
+                "name": "measurementName",
+                "value": "recu/supply-temp",
+                "type": "str"
+            },
+            {
+                "name": "interval",
+                "value": "10",
+                "type": "str"
+            }
         ],
         "x": 230,
         "y": 80,
@@ -961,9 +229,21 @@
         "z": "6bebbd23.6d57e4",
         "name": "Extract temp (C) get",
         "env": [
-            { "name": "fieldName", "value": "ai1", "type": "str" },
-            { "name": "measurementName", "value": "recu/extract-temp", "type": "str" },
-            { "name": "interval", "value": "10", "type": "str" }
+            {
+                "name": "fieldName",
+                "value": "ai1",
+                "type": "str"
+            },
+            {
+                "name": "measurementName",
+                "value": "recu/extract-temp",
+                "type": "str"
+            },
+            {
+                "name": "interval",
+                "value": "10",
+                "type": "str"
+            }
         ],
         "x": 230,
         "y": 140,
@@ -975,9 +255,21 @@
         "z": "6bebbd23.6d57e4",
         "name": "Outdoor temp (C) get",
         "env": [
-            { "name": "fieldName", "value": "ai2", "type": "str" },
-            { "name": "measurementName", "value": "recu/outdoor-temp", "type": "str" },
-            { "name": "interval", "value": "10", "type": "str" }
+            {
+                "name": "fieldName",
+                "value": "ai2",
+                "type": "str"
+            },
+            {
+                "name": "measurementName",
+                "value": "recu/outdoor-temp",
+                "type": "str"
+            },
+            {
+                "name": "interval",
+                "value": "10",
+                "type": "str"
+            }
         ],
         "x": 240,
         "y": 200,
@@ -995,7 +287,11 @@
         "finalize": "",
         "x": 690,
         "y": 80,
-        "wires": [["1a47e54f.a1068b"]]
+        "wires": [
+            [
+                "1a47e54f.a1068b"
+            ]
+        ]
     },
     {
         "id": "1bcc5ef2.0304f1",
@@ -1003,9 +299,21 @@
         "z": "6bebbd23.6d57e4",
         "name": "Heat recovery (W) get",
         "env": [
-            { "name": "fieldName", "value": "ec2", "type": "str" },
-            { "name": "measurementName", "value": "recu/heat-recovery", "type": "str" },
-            { "name": "interval", "value": "10", "type": "str" }
+            {
+                "name": "fieldName",
+                "value": "ec2",
+                "type": "str"
+            },
+            {
+                "name": "measurementName",
+                "value": "recu/heat-recovery",
+                "type": "str"
+            },
+            {
+                "name": "interval",
+                "value": "10",
+                "type": "str"
+            }
         ],
         "x": 240,
         "y": 260,
@@ -1017,9 +325,21 @@
         "z": "6bebbd23.6d57e4",
         "name": "Heating power (W) get",
         "env": [
-            { "name": "fieldName", "value": "ec4", "type": "str" },
-            { "name": "measurementName", "value": "recu/heat-power", "type": "str" },
-            { "name": "interval", "value": "10", "type": "str" }
+            {
+                "name": "fieldName",
+                "value": "ec4",
+                "type": "str"
+            },
+            {
+                "name": "measurementName",
+                "value": "recu/heat-power",
+                "type": "str"
+            },
+            {
+                "name": "interval",
+                "value": "10",
+                "type": "str"
+            }
         ],
         "x": 240,
         "y": 320,
@@ -1031,9 +351,21 @@
         "z": "6bebbd23.6d57e4",
         "name": "Heat exchanger efficiency (%) get",
         "env": [
-            { "name": "fieldName", "value": "ec1", "type": "str" },
-            { "name": "measurementName", "value": "recu/heat-exchanger-efficiency", "type": "str" },
-            { "name": "interval", "value": "10", "type": "str" }
+            {
+                "name": "fieldName",
+                "value": "ec1",
+                "type": "str"
+            },
+            {
+                "name": "measurementName",
+                "value": "recu/heat-exchanger-efficiency",
+                "type": "str"
+            },
+            {
+                "name": "interval",
+                "value": "10",
+                "type": "str"
+            }
         ],
         "x": 260,
         "y": 380,
@@ -1045,9 +377,21 @@
         "z": "6bebbd23.6d57e4",
         "name": "Filter clogging (%) get",
         "env": [
-            { "name": "fieldName", "value": "fcg", "type": "str" },
-            { "name": "measurementName", "value": "recu/filter-clogging", "type": "str" },
-            { "name": "interval", "value": "10", "type": "str" }
+            {
+                "name": "fieldName",
+                "value": "fcg",
+                "type": "str"
+            },
+            {
+                "name": "measurementName",
+                "value": "recu/filter-clogging",
+                "type": "str"
+            },
+            {
+                "name": "interval",
+                "value": "10",
+                "type": "str"
+            }
         ],
         "x": 240,
         "y": 440,
@@ -1059,9 +403,21 @@
         "z": "6bebbd23.6d57e4",
         "name": "Power consumption (W) get",
         "env": [
-            { "name": "fieldName", "value": "ec3", "type": "str" },
-            { "name": "measurementName", "value": "recu/power-consumption", "type": "str" },
-            { "name": "interval", "value": "10", "type": "str" }
+            {
+                "name": "fieldName",
+                "value": "ec3",
+                "type": "str"
+            },
+            {
+                "name": "measurementName",
+                "value": "recu/power-consumption",
+                "type": "str"
+            },
+            {
+                "name": "interval",
+                "value": "10",
+                "type": "str"
+            }
         ],
         "x": 600,
         "y": 80,
@@ -1073,9 +429,21 @@
         "z": "6bebbd23.6d57e4",
         "name": "Air dampers (%) get",
         "env": [
-            { "name": "fieldName", "value": "v_ad", "type": "str" },
-            { "name": "measurementName", "value": "recu/air_dampers", "type": "str" },
-            { "name": "interval", "value": "10", "type": "str" }
+            {
+                "name": "fieldName",
+                "value": "v_ad",
+                "type": "str"
+            },
+            {
+                "name": "measurementName",
+                "value": "recu/air_dampers",
+                "type": "str"
+            },
+            {
+                "name": "interval",
+                "value": "10",
+                "type": "str"
+            }
         ],
         "x": 570,
         "y": 140,
@@ -1087,9 +455,21 @@
         "z": "6bebbd23.6d57e4",
         "name": "Power consumption (W) get",
         "env": [
-            { "name": "fieldName", "value": "ec3", "type": "str" },
-            { "name": "measurementName", "value": "recu/power-consumption", "type": "str" },
-            { "name": "interval", "value": "10", "type": "str" }
+            {
+                "name": "fieldName",
+                "value": "ec3",
+                "type": "str"
+            },
+            {
+                "name": "measurementName",
+                "value": "recu/power-consumption",
+                "type": "str"
+            },
+            {
+                "name": "interval",
+                "value": "10",
+                "type": "str"
+            }
         ],
         "x": 600,
         "y": 200,
@@ -1101,9 +481,21 @@
         "z": "6bebbd23.6d57e4",
         "name": "Energy saving (%) get",
         "env": [
-            { "name": "fieldName", "value": "v_es", "type": "str" },
-            { "name": "measurementName", "value": "recu/energy-saving", "type": "str" },
-            { "name": "interval", "value": "10", "type": "str" }
+            {
+                "name": "fieldName",
+                "value": "v_es",
+                "type": "str"
+            },
+            {
+                "name": "measurementName",
+                "value": "recu/energy-saving",
+                "type": "str"
+            },
+            {
+                "name": "interval",
+                "value": "10",
+                "type": "str"
+            }
         ],
         "x": 580,
         "y": 260,
@@ -1115,9 +507,21 @@
         "z": "6bebbd23.6d57e4",
         "name": "Supply flow (m3/h) get",
         "env": [
-            { "name": "fieldName", "value": "saf", "type": "str" },
-            { "name": "measurementName", "value": "recu/supply-flow", "type": "str" },
-            { "name": "interval", "value": "10", "type": "str" }
+            {
+                "name": "fieldName",
+                "value": "saf",
+                "type": "str"
+            },
+            {
+                "name": "measurementName",
+                "value": "recu/supply-flow",
+                "type": "str"
+            },
+            {
+                "name": "interval",
+                "value": "10",
+                "type": "str"
+            }
         ],
         "x": 580,
         "y": 320,
@@ -1129,9 +533,21 @@
         "z": "6bebbd23.6d57e4",
         "name": "Extract flow (m3/h) get",
         "env": [
-            { "name": "fieldName", "value": "eaf", "type": "str" },
-            { "name": "measurementName", "value": "recu/extract-flow", "type": "str" },
-            { "name": "interval", "value": "10", "type": "str" }
+            {
+                "name": "fieldName",
+                "value": "eaf",
+                "type": "str"
+            },
+            {
+                "name": "measurementName",
+                "value": "recu/extract-flow",
+                "type": "str"
+            },
+            {
+                "name": "interval",
+                "value": "10",
+                "type": "str"
+            }
         ],
         "x": 580,
         "y": 380,
@@ -1143,9 +559,21 @@
         "z": "6bebbd23.6d57e4",
         "name": "Supply fan (%) get",
         "env": [
-            { "name": "fieldName", "value": "v_sfi", "type": "str" },
-            { "name": "measurementName", "value": "recu/supply-fan", "type": "str" },
-            { "name": "interval", "value": "10", "type": "str" }
+            {
+                "name": "fieldName",
+                "value": "v_sfi",
+                "type": "str"
+            },
+            {
+                "name": "measurementName",
+                "value": "recu/supply-fan",
+                "type": "str"
+            },
+            {
+                "name": "interval",
+                "value": "10",
+                "type": "str"
+            }
         ],
         "x": 570,
         "y": 440,
@@ -1157,9 +585,21 @@
         "z": "6bebbd23.6d57e4",
         "name": "Exhaust fan (%) get",
         "env": [
-            { "name": "fieldName", "value": "v_efi", "type": "str" },
-            { "name": "measurementName", "value": "recu/exhaust-fan", "type": "str" },
-            { "name": "interval", "value": "10", "type": "str" }
+            {
+                "name": "fieldName",
+                "value": "v_efi",
+                "type": "str"
+            },
+            {
+                "name": "measurementName",
+                "value": "recu/exhaust-fan",
+                "type": "str"
+            },
+            {
+                "name": "interval",
+                "value": "10",
+                "type": "str"
+            }
         ],
         "x": 570,
         "y": 500,
@@ -1173,7 +613,9 @@
         "user": "8ed427c6.e1f408",
         "x": 700,
         "y": 580,
-        "wires": [[]]
+        "wires": [
+            []
+        ]
     },
     {
         "id": "2dcd78be.a7aad8",
@@ -1183,7 +625,9 @@
         "user": "8ed427c6.e1f408",
         "x": 700,
         "y": 620,
-        "wires": [[]]
+        "wires": [
+            []
+        ]
     },
     {
         "id": "c93381e3.8e6bd",
@@ -1196,7 +640,11 @@
         "swaggerDoc": "",
         "x": 260,
         "y": 580,
-        "wires": [["f07d20ab.09ae5"]]
+        "wires": [
+            [
+                "f07d20ab.09ae5"
+            ]
+        ]
     },
     {
         "id": "f07d20ab.09ae5",
@@ -1210,7 +658,11 @@
         "finalize": "",
         "x": 510,
         "y": 580,
-        "wires": [["ed5b14b9.b05438"]]
+        "wires": [
+            [
+                "ed5b14b9.b05438"
+            ]
+        ]
     },
     {
         "id": "b35af1.bbad651",
@@ -1223,7 +675,11 @@
         "swaggerDoc": "",
         "x": 260,
         "y": 620,
-        "wires": [["98e77708.c54208"]]
+        "wires": [
+            [
+                "98e77708.c54208"
+            ]
+        ]
     },
     {
         "id": "98e77708.c54208",
@@ -1237,7 +693,11 @@
         "finalize": "",
         "x": 510,
         "y": 620,
-        "wires": [["2dcd78be.a7aad8"]]
+        "wires": [
+            [
+                "2dcd78be.a7aad8"
+            ]
+        ]
     },
     {
         "id": "da62fcb1.10cf1",
@@ -1252,14 +712,28 @@
         "language": "en",
         "x": 460,
         "y": 260,
-        "wires": [["2fc3bc25.18b254", "ab6d364b.65d028", "b156086b.7641c8"]]
+        "wires": [
+            [
+                "2fc3bc25.18b254",
+                "ab6d364b.65d028",
+                "b156086b.7641c8"
+            ]
+        ]
     },
     {
         "id": "ad5b652.bf7a798",
         "type": "inject",
         "z": "cbbff5e9.216548",
         "name": "",
-        "props": [{ "p": "payload" }, { "p": "topic", "vt": "str" }],
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
         "repeat": "3600",
         "crontab": "",
         "once": false,
@@ -1269,7 +743,11 @@
         "payloadType": "date",
         "x": 230,
         "y": 260,
-        "wires": [["da62fcb1.10cf1"]]
+        "wires": [
+            [
+                "da62fcb1.10cf1"
+            ]
+        ]
     },
     {
         "id": "f110fbc8.8f1c58",
@@ -1337,7 +815,11 @@
         "finalize": "",
         "x": 670,
         "y": 240,
-        "wires": [["61829895.983168"]]
+        "wires": [
+            [
+                "61829895.983168"
+            ]
+        ]
     },
     {
         "id": "ab6d364b.65d028",
@@ -1351,7 +833,11 @@
         "finalize": "",
         "x": 690,
         "y": 180,
-        "wires": [["ff6556da.078cc8"]]
+        "wires": [
+            [
+                "ff6556da.078cc8"
+            ]
+        ]
     },
     {
         "id": "b156086b.7641c8",
@@ -1365,7 +851,11 @@
         "finalize": "",
         "x": 670,
         "y": 300,
-        "wires": [["f110fbc8.8f1c58"]]
+        "wires": [
+            [
+                "f110fbc8.8f1c58"
+            ]
+        ]
     },
     {
         "id": "4afc5d49.367754",
@@ -1379,7 +869,11 @@
         "finalize": "",
         "x": 400,
         "y": 700,
-        "wires": [["99fff37f.f14a6"]]
+        "wires": [
+            [
+                "99fff37f.f14a6"
+            ]
+        ]
     },
     {
         "id": "99fff37f.f14a6",
@@ -1389,7 +883,12 @@
         "user": "8ed427c6.e1f408",
         "x": 600,
         "y": 700,
-        "wires": [["f987263e.b7f878", "c726fb23.458168"]]
+        "wires": [
+            [
+                "f987263e.b7f878",
+                "c726fb23.458168"
+            ]
+        ]
     },
     {
         "id": "f987263e.b7f878",
@@ -1398,13 +897,21 @@
         "name": "is success?",
         "property": "payload.error",
         "propertyType": "msg",
-        "rules": [{ "t": "false" }],
+        "rules": [
+            {
+                "t": "false"
+            }
+        ],
         "checkall": "true",
         "repair": false,
         "outputs": 1,
         "x": 770,
         "y": 700,
-        "wires": [["e8ea63b6.5df3c"]]
+        "wires": [
+            [
+                "e8ea63b6.5df3c"
+            ]
+        ]
     },
     {
         "id": "e8ea63b6.5df3c",
@@ -1418,7 +925,11 @@
         "finalize": "",
         "x": 400,
         "y": 760,
-        "wires": [["d21d42fb.b00d2"]]
+        "wires": [
+            [
+                "d21d42fb.b00d2"
+            ]
+        ]
     },
     {
         "id": "f0de12d1.ceb26",
@@ -1431,7 +942,11 @@
         "swaggerDoc": "",
         "x": 160,
         "y": 700,
-        "wires": [["4afc5d49.367754"]]
+        "wires": [
+            [
+                "4afc5d49.367754"
+            ]
+        ]
     },
     {
         "id": "d21d42fb.b00d2",
@@ -1441,14 +956,26 @@
         "user": "8ed427c6.e1f408",
         "x": 600,
         "y": 760,
-        "wires": [["e94dd5e1.8b4c08"]]
+        "wires": [
+            [
+                "e94dd5e1.8b4c08"
+            ]
+        ]
     },
     {
         "id": "d4b5948d.6d3e28",
         "type": "inject",
         "z": "6bebbd23.6d57e4",
         "name": "",
-        "props": [{ "p": "payload" }, { "p": "topic", "vt": "str" }],
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
         "repeat": "",
         "crontab": "",
         "once": false,
@@ -1458,14 +985,26 @@
         "payloadType": "date",
         "x": 190,
         "y": 780,
-        "wires": [["4afc5d49.367754"]]
+        "wires": [
+            [
+                "4afc5d49.367754"
+            ]
+        ]
     },
     {
         "id": "5c510eb6.97663",
         "type": "inject",
         "z": "6bebbd23.6d57e4",
         "name": "",
-        "props": [{ "p": "payload" }, { "p": "topic", "vt": "str" }],
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
         "repeat": "",
         "crontab": "",
         "once": false,
@@ -1475,7 +1014,11 @@
         "payloadType": "date",
         "x": 180,
         "y": 840,
-        "wires": [["d6f08abc.51b938"]]
+        "wires": [
+            [
+                "d6f08abc.51b938"
+            ]
+        ]
     },
     {
         "id": "d6f08abc.51b938",
@@ -1489,7 +1032,11 @@
         "finalize": "",
         "x": 380,
         "y": 840,
-        "wires": [["a61ac459.cfef98"]]
+        "wires": [
+            [
+                "a61ac459.cfef98"
+            ]
+        ]
     },
     {
         "id": "a61ac459.cfef98",
@@ -1499,7 +1046,11 @@
         "user": "8ed427c6.e1f408",
         "x": 600,
         "y": 840,
-        "wires": [["bfed519e.4e60f"]]
+        "wires": [
+            [
+                "bfed519e.4e60f"
+            ]
+        ]
     },
     {
         "id": "bfed519e.4e60f",
@@ -1554,7 +1105,15 @@
         "type": "inject",
         "z": "6bebbd23.6d57e4",
         "name": "fieldName",
-        "props": [{ "p": "payload" }, { "p": "topic", "vt": "str" }],
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
         "repeat": "",
         "crontab": "",
         "once": false,
@@ -1564,7 +1123,11 @@
         "payloadType": "str",
         "x": 780,
         "y": 460,
-        "wires": [["c7e01c7e.439dd"]]
+        "wires": [
+            [
+                "c7e01c7e.439dd"
+            ]
+        ]
     },
     {
         "id": "c7e01c7e.439dd",
@@ -1574,7 +1137,11 @@
         "user": "8ed427c6.e1f408",
         "x": 950,
         "y": 460,
-        "wires": [["99493c2e.4b1fa"]]
+        "wires": [
+            [
+                "99493c2e.4b1fa"
+            ]
+        ]
     },
     {
         "id": "99493c2e.4b1fa",
@@ -1610,7 +1177,15 @@
         "type": "inject",
         "z": "c1c0d025.7190c",
         "name": "down",
-        "props": [{ "p": "payload" }, { "p": "topic", "vt": "str" }],
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
         "repeat": "",
         "crontab": "",
         "once": false,
@@ -1620,14 +1195,29 @@
         "payloadType": "num",
         "x": 110,
         "y": 260,
-        "wires": [["76bcab1.1f60054", "edb4790a.22a188", "2265feed.afaef2", "ce69ceb3.24d0d"]]
+        "wires": [
+            [
+                "76bcab1.1f60054",
+                "edb4790a.22a188",
+                "2265feed.afaef2",
+                "ce69ceb3.24d0d"
+            ]
+        ]
     },
     {
         "id": "a13a16b2.2d1ab8",
         "type": "inject",
         "z": "c1c0d025.7190c",
         "name": "stop",
-        "props": [{ "p": "payload" }, { "p": "topic", "vt": "str" }],
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
         "repeat": "",
         "crontab": "",
         "once": false,
@@ -1637,14 +1227,29 @@
         "payloadType": "num",
         "x": 110,
         "y": 200,
-        "wires": [["76bcab1.1f60054", "edb4790a.22a188", "2265feed.afaef2", "ce69ceb3.24d0d"]]
+        "wires": [
+            [
+                "76bcab1.1f60054",
+                "edb4790a.22a188",
+                "2265feed.afaef2",
+                "ce69ceb3.24d0d"
+            ]
+        ]
     },
     {
         "id": "d67c91ff.93f5f",
         "type": "inject",
         "z": "c1c0d025.7190c",
         "name": "up",
-        "props": [{ "p": "payload" }, { "p": "topic", "vt": "str" }],
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
         "repeat": "",
         "crontab": "",
         "once": false,
@@ -1654,7 +1259,14 @@
         "payloadType": "num",
         "x": 110,
         "y": 320,
-        "wires": [["76bcab1.1f60054", "ce69ceb3.24d0d", "2265feed.afaef2", "edb4790a.22a188"]]
+        "wires": [
+            [
+                "76bcab1.1f60054",
+                "ce69ceb3.24d0d",
+                "2265feed.afaef2",
+                "edb4790a.22a188"
+            ]
+        ]
     },
     {
         "id": "edb4790a.22a188",
@@ -1726,7 +1338,15 @@
         "type": "inject",
         "z": "c1c0d025.7190c",
         "name": "stop",
-        "props": [{ "p": "payload" }, { "p": "topic", "vt": "str" }],
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
         "repeat": "",
         "crontab": "",
         "once": false,
@@ -1736,14 +1356,27 @@
         "payloadType": "num",
         "x": 730,
         "y": 100,
-        "wires": [["997f7d70.4614d", "b716ead0.10b178"]]
+        "wires": [
+            [
+                "997f7d70.4614d",
+                "b716ead0.10b178"
+            ]
+        ]
     },
     {
         "id": "ae080c55.f33d2",
         "type": "inject",
         "z": "c1c0d025.7190c",
         "name": "down",
-        "props": [{ "p": "payload" }, { "p": "topic", "vt": "str" }],
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
         "repeat": "",
         "crontab": "",
         "once": false,
@@ -1753,14 +1386,27 @@
         "payloadType": "num",
         "x": 730,
         "y": 40,
-        "wires": [["997f7d70.4614d", "b716ead0.10b178"]]
+        "wires": [
+            [
+                "997f7d70.4614d",
+                "b716ead0.10b178"
+            ]
+        ]
     },
     {
         "id": "c877e8a9.5248c8",
         "type": "inject",
         "z": "c1c0d025.7190c",
         "name": "up",
-        "props": [{ "p": "payload" }, { "p": "topic", "vt": "str" }],
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
         "repeat": "",
         "crontab": "",
         "once": false,
@@ -1770,7 +1416,12 @@
         "payloadType": "num",
         "x": 730,
         "y": 160,
-        "wires": [["997f7d70.4614d", "b716ead0.10b178"]]
+        "wires": [
+            [
+                "997f7d70.4614d",
+                "b716ead0.10b178"
+            ]
+        ]
     },
     {
         "id": "997f7d70.4614d",
@@ -1790,7 +1441,15 @@
         "type": "inject",
         "z": "c1c0d025.7190c",
         "name": "down",
-        "props": [{ "p": "payload" }, { "p": "topic", "vt": "str" }],
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
         "repeat": "",
         "crontab": "",
         "once": false,
@@ -1800,14 +1459,26 @@
         "payloadType": "num",
         "x": 750,
         "y": 220,
-        "wires": [["2c9fa678.25c53a"]]
+        "wires": [
+            [
+                "2c9fa678.25c53a"
+            ]
+        ]
     },
     {
         "id": "65a06f0c.afe97",
         "type": "inject",
         "z": "c1c0d025.7190c",
         "name": "stop",
-        "props": [{ "p": "payload" }, { "p": "topic", "vt": "str" }],
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
         "repeat": "",
         "crontab": "",
         "once": false,
@@ -1817,14 +1488,26 @@
         "payloadType": "num",
         "x": 750,
         "y": 340,
-        "wires": [["2c9fa678.25c53a"]]
+        "wires": [
+            [
+                "2c9fa678.25c53a"
+            ]
+        ]
     },
     {
         "id": "144d4977.3ccf27",
         "type": "inject",
         "z": "c1c0d025.7190c",
         "name": "up",
-        "props": [{ "p": "payload" }, { "p": "topic", "vt": "str" }],
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
         "repeat": "",
         "crontab": "",
         "once": false,
@@ -1834,7 +1517,11 @@
         "payloadType": "num",
         "x": 750,
         "y": 280,
-        "wires": [["2c9fa678.25c53a"]]
+        "wires": [
+            [
+                "2c9fa678.25c53a"
+            ]
+        ]
     },
     {
         "id": "ffd49f1c.732e8",
@@ -1854,7 +1541,15 @@
         "type": "inject",
         "z": "c1c0d025.7190c",
         "name": "down",
-        "props": [{ "p": "payload" }, { "p": "topic", "vt": "str" }],
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
         "repeat": "",
         "crontab": "",
         "once": false,
@@ -1864,14 +1559,26 @@
         "payloadType": "num",
         "x": 710,
         "y": 420,
-        "wires": [["ffd49f1c.732e8"]]
+        "wires": [
+            [
+                "ffd49f1c.732e8"
+            ]
+        ]
     },
     {
         "id": "be3fc619.024b28",
         "type": "inject",
         "z": "c1c0d025.7190c",
         "name": "stop",
-        "props": [{ "p": "payload" }, { "p": "topic", "vt": "str" }],
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
         "repeat": "",
         "crontab": "",
         "once": false,
@@ -1881,14 +1588,26 @@
         "payloadType": "num",
         "x": 710,
         "y": 480,
-        "wires": [["ffd49f1c.732e8"]]
+        "wires": [
+            [
+                "ffd49f1c.732e8"
+            ]
+        ]
     },
     {
         "id": "8d35a59e.203098",
         "type": "inject",
         "z": "c1c0d025.7190c",
         "name": "up",
-        "props": [{ "p": "payload" }, { "p": "topic", "vt": "str" }],
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
         "repeat": "",
         "crontab": "",
         "once": false,
@@ -1898,7 +1617,11 @@
         "payloadType": "num",
         "x": 710,
         "y": 540,
-        "wires": [["ffd49f1c.732e8"]]
+        "wires": [
+            [
+                "ffd49f1c.732e8"
+            ]
+        ]
     },
     {
         "id": "bc1208b7.127648",
@@ -1918,7 +1641,15 @@
         "type": "inject",
         "z": "34d5b010.8abea",
         "name": "",
-        "props": [{ "p": "payload" }, { "p": "topic", "vt": "str" }],
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
         "repeat": "",
         "crontab": "",
         "once": false,
@@ -1928,14 +1659,26 @@
         "payloadType": "num",
         "x": 230,
         "y": 300,
-        "wires": [["bc1208b7.127648"]]
+        "wires": [
+            [
+                "bc1208b7.127648"
+            ]
+        ]
     },
     {
         "id": "617e6181.2def3",
         "type": "inject",
         "z": "34d5b010.8abea",
         "name": "",
-        "props": [{ "p": "payload" }, { "p": "topic", "vt": "str" }],
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
         "repeat": "",
         "crontab": "",
         "once": false,
@@ -1945,7 +1688,11 @@
         "payloadType": "num",
         "x": 230,
         "y": 260,
-        "wires": [["bc1208b7.127648"]]
+        "wires": [
+            [
+                "bc1208b7.127648"
+            ]
+        ]
     },
     {
         "id": "aa94654.cd2d998",
@@ -1960,7 +1707,11 @@
         "endoffset": 0,
         "x": 390,
         "y": 440,
-        "wires": [["ae411547.2db458"]]
+        "wires": [
+            [
+                "ae411547.2db458"
+            ]
+        ]
     },
     {
         "id": "9b122e7b.7f597",
@@ -1983,7 +1734,15 @@
         "type": "inject",
         "z": "34d5b010.8abea",
         "name": "10 min interval",
-        "props": [{ "p": "payload" }, { "p": "topic", "vt": "str" }],
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
         "repeat": "600",
         "crontab": "",
         "once": false,
@@ -1993,7 +1752,11 @@
         "payloadType": "date",
         "x": 200,
         "y": 440,
-        "wires": [["aa94654.cd2d998"]]
+        "wires": [
+            [
+                "aa94654.cd2d998"
+            ]
+        ]
     },
     {
         "id": "ae411547.2db458",
@@ -2002,13 +1765,25 @@
         "name": "is sun up",
         "property": "payload.sunInSky",
         "propertyType": "msg",
-        "rules": [{ "t": "false" }, { "t": "true" }],
+        "rules": [
+            {
+                "t": "false"
+            },
+            {
+                "t": "true"
+            }
+        ],
         "checkall": "true",
         "repair": false,
         "outputs": 2,
         "x": 560,
         "y": 440,
-        "wires": [["9b122e7b.7f597"], []]
+        "wires": [
+            [
+                "9b122e7b.7f597"
+            ],
+            []
+        ]
     },
     {
         "id": "b9cf6135.ac5fa",
@@ -2023,14 +1798,26 @@
         "endoffset": "-180",
         "x": 390,
         "y": 740,
-        "wires": [["6d981ef1.97a3f"]]
+        "wires": [
+            [
+                "6d981ef1.97a3f"
+            ]
+        ]
     },
     {
         "id": "6ab93549.461d9c",
         "type": "inject",
         "z": "c1c0d025.7190c",
         "name": "10 min interval",
-        "props": [{ "p": "payload" }, { "p": "topic", "vt": "str" }],
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
         "repeat": "600",
         "crontab": "",
         "once": true,
@@ -2040,7 +1827,11 @@
         "payloadType": "date",
         "x": 200,
         "y": 740,
-        "wires": [["b9cf6135.ac5fa"]]
+        "wires": [
+            [
+                "b9cf6135.ac5fa"
+            ]
+        ]
     },
     {
         "id": "6d981ef1.97a3f",
@@ -2064,7 +1855,11 @@
         "reduceFixup": "",
         "x": 570,
         "y": 700,
-        "wires": [["3847165.1ad55ea"]]
+        "wires": [
+            [
+                "3847165.1ad55ea"
+            ]
+        ]
     },
     {
         "id": "32514267.d37bce",
@@ -2077,7 +1872,9 @@
         "broker": "190e1795.e65c88",
         "x": 970,
         "y": 320,
-        "wires": [[]]
+        "wires": [
+            []
+        ]
     },
     {
         "id": "3847165.1ad55ea",
@@ -2091,7 +1888,11 @@
         "finalize": "",
         "x": 760,
         "y": 700,
-        "wires": [["b280a085.0bf6"]]
+        "wires": [
+            [
+                "b280a085.0bf6"
+            ]
+        ]
     },
     {
         "id": "49e58fa2.e83a9",
@@ -2104,7 +1905,11 @@
         "broker": "190e1795.e65c88",
         "x": 190,
         "y": 660,
-        "wires": [["638b2db.3dcc1d4"]]
+        "wires": [
+            [
+                "638b2db.3dcc1d4"
+            ]
+        ]
     },
     {
         "id": "b280a085.0bf6",
@@ -2135,7 +1940,11 @@
         "finalize": "",
         "x": 400,
         "y": 660,
-        "wires": [["6d981ef1.97a3f"]]
+        "wires": [
+            [
+                "6d981ef1.97a3f"
+            ]
+        ]
     },
     {
         "id": "99f7f23d.ba1ea",
@@ -2165,7 +1974,11 @@
         "opposite": "",
         "x": 570,
         "y": 540,
-        "wires": [["8ba793d0.3a50c"]]
+        "wires": [
+            [
+                "8ba793d0.3a50c"
+            ]
+        ]
     },
     {
         "id": "4e1820f7.9665a",
@@ -2180,7 +1993,11 @@
         "endoffset": 0,
         "x": 350,
         "y": 540,
-        "wires": [["99f7f23d.ba1ea"]]
+        "wires": [
+            [
+                "99f7f23d.ba1ea"
+            ]
+        ]
     },
     {
         "id": "7412a9df.7d4c18",
@@ -2195,7 +2012,11 @@
         "language": "en",
         "x": 500,
         "y": 700,
-        "wires": [["a15d28c7.5fd9a8"]]
+        "wires": [
+            [
+                "a15d28c7.5fd9a8"
+            ]
+        ]
     },
     {
         "id": "29dbc9c.6e46f36",
@@ -2209,7 +2030,9 @@
         "finalize": "",
         "x": 1100,
         "y": 820,
-        "wires": [[]]
+        "wires": [
+            []
+        ]
     },
     {
         "id": "f392d198.ff1ef",
@@ -2220,9 +2043,15 @@
         "qos": "2",
         "datatype": "auto",
         "broker": "190e1795.e65c88",
+        "nl": false,
+        "rap": false,
         "x": 120,
         "y": 600,
-        "wires": [["9fd7887a.e10088"]]
+        "wires": [
+            [
+                "9fd7887a.e10088"
+            ]
+        ]
     },
     {
         "id": "9fd7887a.e10088",
@@ -2236,7 +2065,11 @@
         "finalize": "",
         "x": 340,
         "y": 600,
-        "wires": [["8ba793d0.3a50c"]]
+        "wires": [
+            [
+                "8ba793d0.3a50c"
+            ]
+        ]
     },
     {
         "id": "8ba793d0.3a50c",
@@ -2260,14 +2093,26 @@
         "reduceFixup": "",
         "x": 750,
         "y": 600,
-        "wires": [["a71d930b.72131"]]
+        "wires": [
+            [
+                "a71d930b.72131"
+            ]
+        ]
     },
     {
         "id": "a260de75.bf8f7",
         "type": "inject",
         "z": "34d5b010.8abea",
         "name": "10 min interval",
-        "props": [{ "p": "payload" }, { "p": "topic", "vt": "str" }],
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
         "repeat": "600",
         "crontab": "",
         "once": true,
@@ -2277,7 +2122,11 @@
         "payloadType": "date",
         "x": 140,
         "y": 540,
-        "wires": [["4e1820f7.9665a"]]
+        "wires": [
+            [
+                "4e1820f7.9665a"
+            ]
+        ]
     },
     {
         "id": "a71d930b.72131",
@@ -2291,7 +2140,9 @@
         "finalize": "",
         "x": 960,
         "y": 640,
-        "wires": [[]]
+        "wires": [
+            []
+        ]
     },
     {
         "id": "307f1fbc.b4147",
@@ -2321,7 +2172,11 @@
         "opposite": "",
         "x": 690,
         "y": 820,
-        "wires": [["5894ce4.9b7113"]]
+        "wires": [
+            [
+                "5894ce4.9b7113"
+            ]
+        ]
     },
     {
         "id": "e74d012b.8edb5",
@@ -2336,7 +2191,12 @@
         "endoffset": 0,
         "x": 370,
         "y": 820,
-        "wires": [["307f1fbc.b4147", "7412a9df.7d4c18"]]
+        "wires": [
+            [
+                "307f1fbc.b4147",
+                "7412a9df.7d4c18"
+            ]
+        ]
     },
     {
         "id": "a17784ec.ea6c28",
@@ -2349,7 +2209,11 @@
         "broker": "190e1795.e65c88",
         "x": 140,
         "y": 880,
-        "wires": [["d52e8f26.53251"]]
+        "wires": [
+            [
+                "d52e8f26.53251"
+            ]
+        ]
     },
     {
         "id": "d52e8f26.53251",
@@ -2363,7 +2227,11 @@
         "finalize": "",
         "x": 700,
         "y": 880,
-        "wires": [["5894ce4.9b7113"]]
+        "wires": [
+            [
+                "5894ce4.9b7113"
+            ]
+        ]
     },
     {
         "id": "5894ce4.9b7113",
@@ -2387,14 +2255,26 @@
         "reduceFixup": "",
         "x": 890,
         "y": 820,
-        "wires": [["29dbc9c.6e46f36"]]
+        "wires": [
+            [
+                "29dbc9c.6e46f36"
+            ]
+        ]
     },
     {
         "id": "40e1b321.4b4fac",
         "type": "inject",
         "z": "34d5b010.8abea",
         "name": "10 min interval",
-        "props": [{ "p": "payload" }, { "p": "topic", "vt": "str" }],
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
         "repeat": "1800",
         "crontab": "",
         "once": true,
@@ -2404,7 +2284,11 @@
         "payloadType": "date",
         "x": 160,
         "y": 820,
-        "wires": [["e74d012b.8edb5"]]
+        "wires": [
+            [
+                "e74d012b.8edb5"
+            ]
+        ]
     },
     {
         "id": "e82e175a.a56658",
@@ -2432,7 +2316,12 @@
         "finalize": "",
         "x": 690,
         "y": 700,
-        "wires": [["307f1fbc.b4147", "5894ce4.9b7113"]]
+        "wires": [
+            [
+                "307f1fbc.b4147",
+                "5894ce4.9b7113"
+            ]
+        ]
     },
     {
         "id": "495bde03.5debb",
@@ -2452,7 +2341,15 @@
         "type": "inject",
         "z": "34d5b010.8abea",
         "name": "",
-        "props": [{ "p": "payload" }, { "p": "topic", "vt": "str" }],
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
         "repeat": "",
         "crontab": "",
         "once": false,
@@ -2462,14 +2359,26 @@
         "payloadType": "num",
         "x": 230,
         "y": 380,
-        "wires": [["495bde03.5debb"]]
+        "wires": [
+            [
+                "495bde03.5debb"
+            ]
+        ]
     },
     {
         "id": "ad1f1b89.c47c78",
         "type": "inject",
         "z": "34d5b010.8abea",
         "name": "",
-        "props": [{ "p": "payload" }, { "p": "topic", "vt": "str" }],
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
         "repeat": "",
         "crontab": "",
         "once": false,
@@ -2479,7 +2388,11 @@
         "payloadType": "num",
         "x": 230,
         "y": 340,
-        "wires": [["495bde03.5debb"]]
+        "wires": [
+            [
+                "495bde03.5debb"
+            ]
+        ]
     },
     {
         "id": "25c8dfa2.27441",
@@ -2499,7 +2412,15 @@
         "type": "inject",
         "z": "c1c0d025.7190c",
         "name": "down",
-        "props": [{ "p": "payload" }, { "p": "topic", "vt": "str" }],
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
         "repeat": "",
         "crontab": "",
         "once": false,
@@ -2509,6 +2430,784 @@
         "payloadType": "num",
         "x": 110,
         "y": 440,
-        "wires": [["ce69ceb3.24d0d"]]
+        "wires": [
+            [
+                "ce69ceb3.24d0d"
+            ]
+        ]
+    },
+    {
+        "id": "4dea7daeb2a8b212",
+        "type": "influxdb out",
+        "z": "f33ae946a1b71124",
+        "influxdb": "49824722.da0c98",
+        "name": "measurement",
+        "measurement": "${measurement}",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "",
+        "retentionPolicyV18Flux": "",
+        "org": "",
+        "bucket": "",
+        "x": 600,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "f036d4db5203aa3f",
+        "type": "function",
+        "z": "f33ae946a1b71124",
+        "name": "parseFloat",
+        "func": "var floatValue = parseFloat(msg.payload,2);\n\nreturn { payload: floatValue };",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 390,
+        "y": 100,
+        "wires": [
+            [
+                "4dea7daeb2a8b212"
+            ]
+        ]
+    },
+    {
+        "id": "101d46602317c710",
+        "type": "mqtt in",
+        "z": "f33ae946a1b71124",
+        "name": "mqtt temp",
+        "topic": "${topic}",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "190e1795.e65c88",
+        "nl": false,
+        "rap": false,
+        "x": 200,
+        "y": 100,
+        "wires": [
+            [
+                "f036d4db5203aa3f"
+            ]
+        ]
+    },
+    {
+        "id": "49a1aedeb078827f",
+        "type": "subflow:f33ae946a1b71124",
+        "z": "10842f61.22bf81",
+        "name": "living temp",
+        "env": [
+            {
+                "name": "topic",
+                "value": "ampio/from/87C4/state/t/1",
+                "type": "str"
+            },
+            {
+                "name": "measurement",
+                "value": "salon/temp",
+                "type": "str"
+            },
+            {
+                "name": "deviceId",
+                "value": "87C4",
+                "type": "str"
+            },
+            {
+                "name": "sensorId",
+                "value": "1",
+                "type": "str"
+            },
+            {
+                "name": "dbId",
+                "value": "salon/temp",
+                "type": "str"
+            }
+        ],
+        "x": 200,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "ce307197fe24dbec",
+        "type": "subflow:f33ae946a1b71124",
+        "z": "10842f61.22bf81",
+        "name": "child S temp",
+        "env": [
+            {
+                "name": "topic",
+                "value": "ampio/from/87C5/state/t/1",
+                "type": "str"
+            },
+            {
+                "name": "measurement",
+                "value": "blanka/temp",
+                "type": "str"
+            },
+            {
+                "name": "deviceId",
+                "value": "87C5",
+                "type": "str"
+            },
+            {
+                "name": "sensorId",
+                "value": "1",
+                "type": "str"
+            },
+            {
+                "name": "dbId",
+                "value": "salon/temp",
+                "type": "str"
+            }
+        ],
+        "x": 210,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "2c33d5ad56c90af6",
+        "type": "subflow:f33ae946a1b71124",
+        "z": "10842f61.22bf81",
+        "name": "child N temp",
+        "env": [
+            {
+                "name": "topic",
+                "value": "ampio/from/87C5/state/t/2",
+                "type": "str"
+            },
+            {
+                "name": "measurement",
+                "value": "leon/temp",
+                "type": "str"
+            },
+            {
+                "name": "deviceId",
+                "value": "87C5",
+                "type": "str"
+            },
+            {
+                "name": "sensorId",
+                "value": "2",
+                "type": "str"
+            },
+            {
+                "name": "dbId",
+                "value": "salon/temp",
+                "type": "str"
+            }
+        ],
+        "x": 210,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "9dab98f92fe9eada",
+        "type": "subflow:f33ae946a1b71124",
+        "z": "10842f61.22bf81",
+        "name": "hall 1 temp",
+        "env": [
+            {
+                "name": "topic",
+                "value": "ampio/from/87C5/state/t/3",
+                "type": "str"
+            },
+            {
+                "name": "measurement",
+                "value": "holpietro/temp",
+                "type": "str"
+            },
+            {
+                "name": "deviceId",
+                "value": "87C5",
+                "type": "str"
+            },
+            {
+                "name": "sensorId",
+                "value": "3",
+                "type": "str"
+            },
+            {
+                "name": "dbId",
+                "value": "salon/temp",
+                "type": "str"
+            }
+        ],
+        "x": 200,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "60cfb1ab5f22b5f4",
+        "type": "subflow:f33ae946a1b71124",
+        "z": "10842f61.22bf81",
+        "name": "entrance temp",
+        "env": [
+            {
+                "name": "topic",
+                "value": "ampio/from/87C7/state/t/1",
+                "type": "str"
+            },
+            {
+                "name": "measurement",
+                "value": "entrance/temp",
+                "type": "str"
+            },
+            {
+                "name": "deviceId",
+                "value": "87C7",
+                "type": "str"
+            },
+            {
+                "name": "sensorId",
+                "value": "1",
+                "type": "str"
+            },
+            {
+                "name": "dbId",
+                "value": "salon/temp",
+                "type": "str"
+            }
+        ],
+        "x": 220,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "c2fba12d824295aa",
+        "type": "subflow:f33ae946a1b71124",
+        "z": "10842f61.22bf81",
+        "name": "bedroom temp",
+        "env": [
+            {
+                "name": "topic",
+                "value": "ampio/from/87C4/state/t/1",
+                "type": "str"
+            },
+            {
+                "name": "measurement",
+                "value": "bedroom/temp",
+                "type": "str"
+            },
+            {
+                "name": "deviceId",
+                "value": "87C7",
+                "type": "str"
+            },
+            {
+                "name": "sensorId",
+                "value": "1",
+                "type": "str"
+            },
+            {
+                "name": "dbId",
+                "value": "salon/temp",
+                "type": "str"
+            }
+        ],
+        "x": 220,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "987d20203747cd46",
+        "type": "subflow:f33ae946a1b71124",
+        "z": "10842f61.22bf81",
+        "name": "bath 1 temp",
+        "env": [
+            {
+                "name": "topic",
+                "value": "ampio/from/87CC/state/t/1",
+                "type": "str"
+            },
+            {
+                "name": "measurement",
+                "value": "bath1/temp",
+                "type": "str"
+            },
+            {
+                "name": "deviceId",
+                "value": "87C7",
+                "type": "str"
+            },
+            {
+                "name": "sensorId",
+                "value": "1",
+                "type": "str"
+            },
+            {
+                "name": "dbId",
+                "value": "salon/temp",
+                "type": "str"
+            }
+        ],
+        "x": 210,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "05cb59878a9beb5a",
+        "type": "subflow:f33ae946a1b71124",
+        "z": "10842f61.22bf81",
+        "name": "laundry temp",
+        "env": [
+            {
+                "name": "topic",
+                "value": "ampio/from/87CC/state/t/2",
+                "type": "str"
+            },
+            {
+                "name": "measurement",
+                "value": "laundry/temp",
+                "type": "str"
+            },
+            {
+                "name": "deviceId",
+                "value": "87C7",
+                "type": "str"
+            },
+            {
+                "name": "sensorId",
+                "value": "1",
+                "type": "str"
+            },
+            {
+                "name": "dbId",
+                "value": "salon/temp",
+                "type": "str"
+            }
+        ],
+        "x": 210,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "4f15b406b77d3fe8",
+        "type": "subflow:f33ae946a1b71124",
+        "z": "10842f61.22bf81",
+        "name": "bath 0 temp",
+        "env": [
+            {
+                "name": "topic",
+                "value": "ampio/from/87D2/state/t/1",
+                "type": "str"
+            },
+            {
+                "name": "measurement",
+                "value": "bath0/temp",
+                "type": "str"
+            },
+            {
+                "name": "deviceId",
+                "value": "87C7",
+                "type": "str"
+            },
+            {
+                "name": "sensorId",
+                "value": "1",
+                "type": "str"
+            },
+            {
+                "name": "dbId",
+                "value": "salon/temp",
+                "type": "str"
+            }
+        ],
+        "x": 210,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "a03a6c9d0d2f6c1e",
+        "type": "subflow:f33ae946a1b71124",
+        "z": "10842f61.22bf81",
+        "name": "guest temp",
+        "env": [
+            {
+                "name": "topic",
+                "value": "ampio/from/87D2/state/t/2",
+                "type": "str"
+            },
+            {
+                "name": "measurement",
+                "value": "guest/temp",
+                "type": "str"
+            },
+            {
+                "name": "deviceId",
+                "value": "87C7",
+                "type": "str"
+            },
+            {
+                "name": "sensorId",
+                "value": "1",
+                "type": "str"
+            },
+            {
+                "name": "dbId",
+                "value": "salon/temp",
+                "type": "str"
+            }
+        ],
+        "x": 210,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "bca0395218f14aeb",
+        "type": "subflow:f33ae946a1b71124",
+        "z": "10842f61.22bf81",
+        "name": "store temp",
+        "env": [
+            {
+                "name": "topic",
+                "value": "ampio/from/87D2/state/t/3",
+                "type": "str"
+            },
+            {
+                "name": "measurement",
+                "value": "store/temp",
+                "type": "str"
+            },
+            {
+                "name": "deviceId",
+                "value": "87C7",
+                "type": "str"
+            },
+            {
+                "name": "sensorId",
+                "value": "1",
+                "type": "str"
+            },
+            {
+                "name": "dbId",
+                "value": "salon/temp",
+                "type": "str"
+            }
+        ],
+        "x": 200,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "95eceeb51a351eaf",
+        "type": "subflow:f33ae946a1b71124",
+        "z": "10842f61.22bf81",
+        "name": "wardrobe temp",
+        "env": [
+            {
+                "name": "topic",
+                "value": "ampio/from/87C4/state/t/2",
+                "type": "str"
+            },
+            {
+                "name": "measurement",
+                "value": "wardrobe/temp",
+                "type": "str"
+            },
+            {
+                "name": "deviceId",
+                "value": "87C7",
+                "type": "str"
+            },
+            {
+                "name": "sensorId",
+                "value": "1",
+                "type": "str"
+            },
+            {
+                "name": "dbId",
+                "value": "salon/temp",
+                "type": "str"
+            }
+        ],
+        "x": 220,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "a83f69a2f95a02c6",
+        "type": "subflow:f33ae946a1b71124",
+        "z": "10842f61.22bf81",
+        "name": "external temp",
+        "env": [
+            {
+                "name": "topic",
+                "value": "ampio/from/87C4/state/t/3",
+                "type": "str"
+            },
+            {
+                "name": "measurement",
+                "value": "external/temp",
+                "type": "str"
+            },
+            {
+                "name": "deviceId",
+                "value": "87C7",
+                "type": "str"
+            },
+            {
+                "name": "sensorId",
+                "value": "1",
+                "type": "str"
+            },
+            {
+                "name": "dbId",
+                "value": "salon/temp",
+                "type": "str"
+            }
+        ],
+        "x": 210,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "29d0618eb44342c2",
+        "type": "subflow:f33ae946a1b71124",
+        "z": "10842f61.22bf81",
+        "name": "boiler temp",
+        "env": [
+            {
+                "name": "topic",
+                "value": "ampio/from/0001/state/t/2",
+                "type": "str"
+            },
+            {
+                "name": "measurement",
+                "value": "boiler/temp",
+                "type": "str"
+            },
+            {
+                "name": "deviceId",
+                "value": "87C7",
+                "type": "str"
+            },
+            {
+                "name": "sensorId",
+                "value": "1",
+                "type": "str"
+            },
+            {
+                "name": "dbId",
+                "value": "salon/temp",
+                "type": "str"
+            }
+        ],
+        "x": 210,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "f94065d494643a5b",
+        "type": "subflow:f33ae946a1b71124",
+        "z": "10842f61.22bf81",
+        "name": "guest valve",
+        "env": [
+            {
+                "name": "topic",
+                "value": "ampio/from/87C4/state/o/2",
+                "type": "str"
+            },
+            {
+                "name": "measurement",
+                "value": "guest/heat/valve",
+                "type": "str"
+            },
+            {
+                "name": "deviceId",
+                "value": "87C7",
+                "type": "str"
+            },
+            {
+                "name": "sensorId",
+                "value": "1",
+                "type": "str"
+            },
+            {
+                "name": "dbId",
+                "value": "salon/temp",
+                "type": "str"
+            }
+        ],
+        "x": 430,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "c76a5d0337b00e37",
+        "type": "subflow:f33ae946a1b71124",
+        "z": "10842f61.22bf81",
+        "name": "garage valve",
+        "env": [
+            {
+                "name": "topic",
+                "value": "ampio/from/87C4/state/o/1",
+                "type": "str"
+            },
+            {
+                "name": "measurement",
+                "value": "garage/heat/valve",
+                "type": "str"
+            },
+            {
+                "name": "deviceId",
+                "value": "87C7",
+                "type": "str"
+            },
+            {
+                "name": "sensorId",
+                "value": "1",
+                "type": "str"
+            },
+            {
+                "name": "dbId",
+                "value": "salon/temp",
+                "type": "str"
+            }
+        ],
+        "x": 430,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "1b7a48b7b3d06ba4",
+        "type": "subflow:f33ae946a1b71124",
+        "z": "10842f61.22bf81",
+        "name": "bath 0 valve",
+        "env": [
+            {
+                "name": "topic",
+                "value": "ampio/from/87C4/state/o/3",
+                "type": "str"
+            },
+            {
+                "name": "measurement",
+                "value": "bath0/heat/valve",
+                "type": "str"
+            },
+            {
+                "name": "deviceId",
+                "value": "87C7",
+                "type": "str"
+            },
+            {
+                "name": "sensorId",
+                "value": "1",
+                "type": "str"
+            },
+            {
+                "name": "dbId",
+                "value": "salon/temp",
+                "type": "str"
+            }
+        ],
+        "x": 430,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "3dd345bcbd1b43fa",
+        "type": "subflow:f33ae946a1b71124",
+        "z": "10842f61.22bf81",
+        "name": "living valve",
+        "env": [
+            {
+                "name": "topic",
+                "value": "ampio/from/87C4/state/o/4",
+                "type": "str"
+            },
+            {
+                "name": "measurement",
+                "value": "living/heat/valve",
+                "type": "str"
+            },
+            {
+                "name": "deviceId",
+                "value": "87C7",
+                "type": "str"
+            },
+            {
+                "name": "sensorId",
+                "value": "1",
+                "type": "str"
+            },
+            {
+                "name": "dbId",
+                "value": "salon/temp",
+                "type": "str"
+            }
+        ],
+        "x": 420,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "d23abe933ec328bb",
+        "type": "subflow:f33ae946a1b71124",
+        "z": "10842f61.22bf81",
+        "name": "entrance valve",
+        "env": [
+            {
+                "name": "topic",
+                "value": "ampio/from/87C4/state/o/5",
+                "type": "str"
+            },
+            {
+                "name": "measurement",
+                "value": "entrance/heat/valve",
+                "type": "str"
+            },
+            {
+                "name": "deviceId",
+                "value": "87C7",
+                "type": "str"
+            },
+            {
+                "name": "sensorId",
+                "value": "1",
+                "type": "str"
+            },
+            {
+                "name": "dbId",
+                "value": "salon/temp",
+                "type": "str"
+            }
+        ],
+        "x": 440,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "f310ef11291a1dd3",
+        "type": "subflow:f33ae946a1b71124",
+        "z": "10842f61.22bf81",
+        "name": "bath 1 valve",
+        "env": [
+            {
+                "name": "topic",
+                "value": "ampio/from/87C4/state/o/6",
+                "type": "str"
+            },
+            {
+                "name": "measurement",
+                "value": "bath1/heat/valve",
+                "type": "str"
+            },
+            {
+                "name": "deviceId",
+                "value": "87C7",
+                "type": "str"
+            },
+            {
+                "name": "sensorId",
+                "value": "1",
+                "type": "str"
+            },
+            {
+                "name": "dbId",
+                "value": "salon/temp",
+                "type": "str"
+            }
+        ],
+        "x": 430,
+        "y": 280,
+        "wires": []
     }
 ]
