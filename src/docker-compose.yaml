@@ -35,15 +35,14 @@ services:
     depends_on:
       - influxdb
 
-  # backup:
-  #   image: offen/docker-volume-backup:latest
-  #   env_file:
-  #     - .env
-  #   volumes:
-  #     - influxdb-storage:/backup/influxdb-backup:ro
-  #     - grafana-storage:/backup/grafana-backup:ro
-  #     - nodered-storage:/backup/nodered-backup:ro
-  #     - /var/run/docker.sock:/var/run/docker.sock:ro
+  backup:
+    image: offen/docker-volume-backup:latest
+    env_file:
+      - .env
+    volumes:
+      - influxdb-storage:/backup/influxdb-backup:ro
+      - grafana-storage:/backup/grafana-backup:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
 
 volumes:
   influxdb-storage:
