@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   influxdb:
-    image: influxdb:1.8
+    image: influxdb:1.8-alpine
     container_name: influxdb
     ports:
       - "8083:8083"
@@ -16,7 +16,7 @@ services:
       - docker-volume-backup.stop-during-backup=true
 
   grafana:
-    image: grafana/grafana:latest
+    image: grafana/grafana:8.2.4
     container_name: grafana
     ports:
       - "3000:3000"
@@ -26,7 +26,7 @@ services:
       - grafana-storage:/var/lib/grafana
 
   nodered:
-    image: my-node-red
+    image: kadzaa/private:latest
     container_name: node-red
     ports:
       - "1880:1880"
