@@ -20,27 +20,33 @@
  *
  **/
 
-process.env.guest_motion_sensor="ampio/from/7FA7/state/bi/8"
-process.env.guest_ceiling_light_topic_from="ampio/from/87C7/state/o/6";
-process.env.guest_ceiling_light_topic_to="ampio/to/87C7/o/6/cmd";
-process.env.child_s_motion_sensor="ampio/from/7FA7/state/bi/4"
-process.env.child_s_ceiling_light_topic_from="ampio/from/87C5/state/o/1";
-process.env.child_s_ceiling_light_topic_to="ampio/to/87C5/o/1/cmd";
-process.env.child_s_wall_light_topic_from="ampio/from/87C5/state/o/2";
-process.env.child_s_wall_light_topic_to="ampio/to/87C5/o/2/cmd";
-process.env.child_n_motion_sensor="ampio/from/7FA7/state/bi/13"
 process.env.child_n_ceiling_light_topic_from="ampio/from/87C5/state/o/3";
 process.env.child_n_ceiling_light_topic_to="ampio/to/87C5/o/3/cmd";
+process.env.child_n_motion_sensor="ampio/from/7FA7/state/bi/13"
 process.env.child_n_wall_light_topic_from="ampio/from/87C5/state/o/4";
 process.env.child_n_wall_light_topic_to="ampio/to/87C5/o/4/cmd";
+process.env.child_s_ceiling_light_topic_from="ampio/from/87C5/state/o/1";
+process.env.child_s_ceiling_light_topic_to="ampio/to/87C5/o/1/cmd";
+process.env.child_s_motion_sensor="ampio/from/7FA7/state/bi/4"
+process.env.child_s_wall_light_topic_from="ampio/from/87C5/state/o/2";
+process.env.child_s_wall_light_topic_to="ampio/to/87C5/o/2/cmd";
 process.env.dining_light_topic_from="ampio/from/87D2/state/o/2";
 process.env.dining_light_topic_to="ampio/to/87D2/o/2/cmd";
-process.env.living_garden_light_topic_from="ampio/from/87D2/state/o/1";
-process.env.living_garden_light_topic_to="ampio/to/87D2/o/1/cmd";
+process.env.guest_ceiling_light_topic_from="ampio/from/87C7/state/o/6";
+process.env.guest_ceiling_light_topic_to="ampio/to/87C7/o/6/cmd";
+process.env.guest_motion_sensor="ampio/from/7FA7/state/bi/8"
+process.env.laundry_light_topic_from="ampio/from/87C5/state/o/7";
+process.env.laundry_light_topic_to="ampio/to/87C5/o/7/cmd";
+process.env.laundry_motion_sensor="ampio/from/7FA7/state/bi/6"
 process.env.living_entrance_light_topic_from="ampio/from/87D2/state/o/3";
 process.env.living_entrance_light_topic_to="ampio/to/87D2/o/3/cmd";
+process.env.living_garden_light_topic_from="ampio/from/87D2/state/o/1";
+process.env.living_garden_light_topic_to="ampio/to/87D2/o/1/cmd";
 process.env.living_main_light_topic_from="ampio/from/51CC/state/o/1";
 process.env.living_main_light_topic_to="ampio/to/51CC/o/1/cmd";
+process.env.wardrobe_light_topic_from="ampio/from/87CC/state/o/3";
+process.env.wardrobe_light_topic_to="ampio/to/87CC/o/3/cmd";
+process.env.wardrobe_motion_sensor="ampio/from/7FA7/state/bi/10"
 
 module.exports = {
     /*******************************************************************************

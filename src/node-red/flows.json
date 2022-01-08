@@ -3470,8 +3470,8 @@
                 "type": "str"
             }
         ],
-        "x": 1150,
-        "y": 160,
+        "x": 1130,
+        "y": 100,
         "wires": []
     },
     {
@@ -3485,8 +3485,8 @@
         "broker": "190e1795.e65c88",
         "nl": false,
         "rap": false,
-        "x": 790,
-        "y": 160,
+        "x": 770,
+        "y": 100,
         "wires": [
             [
                 "d9406fe4f2d08df2"
@@ -3510,8 +3510,8 @@
         "bytopic": "all",
         "topic": "topic",
         "outputs": 1,
-        "x": 970,
-        "y": 160,
+        "x": 950,
+        "y": 100,
         "wires": [
             [
                 "2154b0b2513fea14"
@@ -3629,8 +3629,8 @@
         "broker": "190e1795.e65c88",
         "nl": false,
         "rap": false,
-        "x": 790,
-        "y": 260,
+        "x": 770,
+        "y": 200,
         "wires": [
             [
                 "5e850ebec75c0720"
@@ -3654,8 +3654,8 @@
         "bytopic": "all",
         "topic": "topic",
         "outputs": 1,
-        "x": 970,
-        "y": 260,
+        "x": 950,
+        "y": 200,
         "wires": [
             [
                 "8380894b1144dd3d",
@@ -3674,8 +3674,8 @@
         "broker": "190e1795.e65c88",
         "nl": false,
         "rap": false,
-        "x": 790,
-        "y": 380,
+        "x": 770,
+        "y": 320,
         "wires": [
             [
                 "a82c084291153d74"
@@ -3691,7 +3691,7 @@
         "op2": "0",
         "op1type": "nul",
         "op2type": "str",
-        "duration": "1",
+        "duration": "2",
         "extend": false,
         "overrideDelay": false,
         "units": "hr",
@@ -3699,8 +3699,8 @@
         "bytopic": "all",
         "topic": "topic",
         "outputs": 1,
-        "x": 970,
-        "y": 380,
+        "x": 950,
+        "y": 320,
         "wires": [
             [
                 "6c306fcf2b3efd93",
@@ -3825,8 +3825,8 @@
                 "type": "env"
             }
         ],
-        "x": 1170,
-        "y": 280,
+        "x": 1150,
+        "y": 220,
         "wires": []
     },
     {
@@ -3846,8 +3846,8 @@
                 "type": "env"
             }
         ],
-        "x": 1160,
-        "y": 220,
+        "x": 1140,
+        "y": 160,
         "wires": []
     },
     {
@@ -3888,8 +3888,8 @@
                 "type": "env"
             }
         ],
-        "x": 1160,
-        "y": 340,
+        "x": 1140,
+        "y": 280,
         "wires": []
     },
     {
@@ -3909,8 +3909,8 @@
                 "type": "env"
             }
         ],
-        "x": 1170,
-        "y": 400,
+        "x": 1150,
+        "y": 340,
         "wires": []
     },
     {
@@ -4090,5 +4090,155 @@
         "x": 400,
         "y": 120,
         "wires": []
+    },
+    {
+        "id": "a7e2ddac2e702f46",
+        "type": "subflow:51751d6da98303cc",
+        "z": "88a0490b5ee9139a",
+        "name": "wardrobe light",
+        "env": [
+            {
+                "name": "toTopic",
+                "value": "wardrobe_light_topic_to",
+                "type": "env"
+            },
+            {
+                "name": "fromTopic",
+                "value": "wardrobe_light_topic_from",
+                "type": "env"
+            },
+            {
+                "name": "inputTopic",
+                "value": "${guest_ceiling_light_topic_to}",
+                "type": "str"
+            },
+            {
+                "name": "outputTopic",
+                "value": "{guest_ceiling_light_topic_from}",
+                "type": "str"
+            }
+        ],
+        "x": 1140,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "0356126326dccf4b",
+        "type": "mqtt in",
+        "z": "88a0490b5ee9139a",
+        "name": "wardrobe sensor",
+        "topic": "${wardrobe_motion_sensor}",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "190e1795.e65c88",
+        "nl": false,
+        "rap": false,
+        "x": 780,
+        "y": 400,
+        "wires": [
+            [
+                "6f27a0431d6e8010"
+            ]
+        ]
+    },
+    {
+        "id": "6f27a0431d6e8010",
+        "type": "trigger",
+        "z": "88a0490b5ee9139a",
+        "name": "",
+        "op1": "",
+        "op2": "0",
+        "op1type": "nul",
+        "op2type": "str",
+        "duration": "30",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "1",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 950,
+        "y": 400,
+        "wires": [
+            [
+                "a7e2ddac2e702f46"
+            ]
+        ]
+    },
+    {
+        "id": "9b3fc47ee593e465",
+        "type": "subflow:51751d6da98303cc",
+        "z": "88a0490b5ee9139a",
+        "name": "laundry light",
+        "env": [
+            {
+                "name": "toTopic",
+                "value": "laundry_light_topic_to",
+                "type": "env"
+            },
+            {
+                "name": "fromTopic",
+                "value": "laundry_light_topic_from",
+                "type": "env"
+            },
+            {
+                "name": "inputTopic",
+                "value": "${guest_ceiling_light_topic_to}",
+                "type": "str"
+            },
+            {
+                "name": "outputTopic",
+                "value": "{guest_ceiling_light_topic_from}",
+                "type": "str"
+            }
+        ],
+        "x": 1130,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "2515c120f305c7c2",
+        "type": "mqtt in",
+        "z": "88a0490b5ee9139a",
+        "name": "laundry sensor",
+        "topic": "${laundry_motion_sensor}",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "190e1795.e65c88",
+        "nl": false,
+        "rap": false,
+        "x": 780,
+        "y": 460,
+        "wires": [
+            [
+                "3ae2df66aee1e9c3"
+            ]
+        ]
+    },
+    {
+        "id": "3ae2df66aee1e9c3",
+        "type": "trigger",
+        "z": "88a0490b5ee9139a",
+        "name": "",
+        "op1": "",
+        "op2": "0",
+        "op1type": "nul",
+        "op2type": "str",
+        "duration": "30",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "1",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 950,
+        "y": 460,
+        "wires": [
+            [
+                "9b3fc47ee593e465"
+            ]
+        ]
     }
 ]
