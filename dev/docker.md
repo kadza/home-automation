@@ -23,7 +23,8 @@
 -   Stop container: sudo docker stop grafana
 -   Remove all volumes: docker volume rm $(docker volume ls -q)
 -   Run command in a container as root: docker exec -u root -t -i grafana /bin/bash -c 'chown grafana:root /var/lib/grafana/grafana.db'
--   Build my-node-red image: docker build -t my-node-red .
+-   Build my-node-red image: docker build -t kadzaa/private:latest .
+-   Deploy my-node-red image: docker push kadzaa/private:latest
 -   Create context: docker context create wyse --docker host=ssh://luke@192.168.1.170
 -   List contexts: docker context ls
 -   Deploy on remote host: docker-compose --context wyse -p home-automation up -d
