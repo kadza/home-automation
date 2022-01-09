@@ -1,4 +1,4 @@
-version: "3.9"
+version: "3.8"
 
 services:
   influxdb:
@@ -37,9 +37,12 @@ services:
 
   backup:
     image: offen/docker-volume-backup:latest
-    env_file:
-      - .env
+    container_name: backup
+    environment:
+        BACKUP_FILENAME: backup.tar.gz
+        BACKUP_LATEST_SYMLINK: backup-latest.tar.gz
     volumes:
+      - /home/luke/repos/home-automation/src/bkp:/archive
       - influxdb-storage:/backup/influxdb-backup:ro
       - grafana-storage:/backup/grafana-backup:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
