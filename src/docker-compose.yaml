@@ -48,4 +48,3 @@ services:
 volumes:
   influxdb-storage:
   grafana-storage:
-  nodered-storage:
