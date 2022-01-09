@@ -37,6 +37,7 @@ services:
 
   backup:
     image: offen/docker-volume-backup:latest
+    container_name: backup
     env_file:
       - .env
     volumes:
