@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # aws cli must be installed
-# Why home-automation in volume name?
+# Current user must have permissions to use docker
+# In case of /var/lib/grafana permission error sudo chown -R 472:472 /var/lib/docker/volumes/home-automation_grafana-storage
 
 cd "$(dirname "$0")"
 
@@ -20,7 +21,7 @@ docker cp ./tmp/backup/influxdb-backup/. influxdb_restore:/influxdb_restore
 docker stop influxdb_restore
 docker rm influxdb_restore
 
-docker compose -p home-automation up -d
+docker-compose -p home-automation up -d
 
 # In order to set permissions correctly we need to start Grafana first, copy the files, set appropriate persmissions and restart Grafana
 # https://github.com/moby/moby/issues/25977
