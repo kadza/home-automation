@@ -1865,6 +1865,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 760,
         "y": 700,
         "wires": [
@@ -4539,6 +4540,164 @@
         ],
         "x": 1160,
         "y": 580,
+        "wires": []
+    },
+    {
+        "id": "cf0b9c7173388dd6",
+        "type": "sunpos",
+        "z": "88a0490b5ee9139a",
+        "name": "sun position",
+        "lon": "19.493367",
+        "lat": "51.666359",
+        "start": "sunrise",
+        "startoffset": "",
+        "end": "dusk",
+        "endoffset": "",
+        "x": 950,
+        "y": 680,
+        "wires": [
+            [
+                "76b66b7697c01f78"
+            ]
+        ]
+    },
+    {
+        "id": "dbc4eabb21a4539c",
+        "type": "inject",
+        "z": "88a0490b5ee9139a",
+        "name": "10 min interval",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "600",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 780,
+        "y": 680,
+        "wires": [
+            [
+                "cf0b9c7173388dd6"
+            ]
+        ]
+    },
+    {
+        "id": "76b66b7697c01f78",
+        "type": "function",
+        "z": "88a0490b5ee9139a",
+        "name": "isNightLightOn",
+        "func": "if(\n    msg == null || \n    msg.payload == null || \n    msg.payload.sunInSky == null\n)\nreturn 0;\n\nvar isNight = !msg.payload.sunInSky;\nvar currentHour = new Date().getHours();\nvar isBedTime = currentHour < 7 ? true : false;\nvar lightStatus = (isNight && !isBedTime) ? 1 : 0;\n\nreturn {\n    payload: lightStatus\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1120,
+        "y": 680,
+        "wires": [
+            [
+                "4149c3aecc4453a7"
+            ]
+        ]
+    },
+    {
+        "id": "8f1f9341c4e9027f",
+        "type": "inject",
+        "z": "88a0490b5ee9139a",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "x": 150,
+        "y": 1060,
+        "wires": [
+            [
+                "c7ac33e2ee6a8e7f"
+            ]
+        ]
+    },
+    {
+        "id": "34c8a8c35e39d561",
+        "type": "inject",
+        "z": "88a0490b5ee9139a",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 150,
+        "y": 1100,
+        "wires": [
+            [
+                "c7ac33e2ee6a8e7f"
+            ]
+        ]
+    },
+    {
+        "id": "c7ac33e2ee6a8e7f",
+        "type": "subflow:51751d6da98303cc",
+        "z": "88a0490b5ee9139a",
+        "name": "external front light",
+        "env": [
+            {
+                "name": "toTopic",
+                "value": "external_front_light_topic_to",
+                "type": "env"
+            },
+            {
+                "name": "fromTopic",
+                "value": "external_front_light_topic_from",
+                "type": "env"
+            }
+        ],
+        "x": 411,
+        "y": 1086,
+        "wires": []
+    },
+    {
+        "id": "4149c3aecc4453a7",
+        "type": "subflow:51751d6da98303cc",
+        "z": "88a0490b5ee9139a",
+        "name": "external front light",
+        "env": [
+            {
+                "name": "toTopic",
+                "value": "external_front_light_topic_to",
+                "type": "env"
+            },
+            {
+                "name": "fromTopic",
+                "value": "external_front_light_topic_from",
+                "type": "env"
+            }
+        ],
+        "x": 1310,
+        "y": 680,
         "wires": []
     }
 ]
