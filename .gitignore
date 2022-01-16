@@ -1,3 +1,5 @@
 .env
 src/bkp/data
 src/node-red/node-red-contrib-komfovent-0.3.3.tgz
+password.txt
+/.vagrant/*
