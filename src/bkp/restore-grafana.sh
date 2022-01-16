@@ -13,5 +13,5 @@ docker rm grafana_restore
 
 # Don't know why this line is necessary
 docker start grafana
-docker exec -u root -t -i grafana /bin/bash -c 'chown grafana:root /var/lib/grafana/grafana.db'
+docker exec -u root grafana /bin/bash -c 'chown grafana:root /var/lib/grafana/grafana.db'
 docker restart grafana

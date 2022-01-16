@@ -2,4 +2,5 @@
 src/bkp/data
 src/node-red/node-red-contrib-komfovent-0.3.3.tgz
 password.txt
-/.vagrant/*
+src/.vagrant/*
+src/ubuntu-bionic-18.04-cloudimg-console.log
