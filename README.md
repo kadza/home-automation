@@ -1,3 +1,4 @@
 # Dev environment setup
-1. Install vagrant
-2. vagrant plugin install vagrant-docker-compose
+1. Install Vagrant
+2. Install VirtualBox
+3. Run: `vagrant up`
