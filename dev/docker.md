@@ -27,12 +27,14 @@
 -   Deploy my-node-red image: `docker push kadzaa/private:latest`
 -   Create context: `docker context create wyse --docker host=ssh://luke@192.168.1.170`
 -   List contexts: `docker context ls`
+-   Pull images on remote host: `docker-compose --context wyse -p home-automation pull`
 -   Deploy on remote host: `docker-compose --context wyse -p home-automation up -d`
 -   Run backup manually: `docker exec backup backup`
 -   Run single container: `docker-compose -p home-automation up -d backup`
 
 ## Docker remote host
 - Ssh key: https://www.digitalocean.com/community/tutorials/how-to-configure-ssh-key-based-authentication-on-a-linux-server
+- Troubleshooting non working docker compose ssh: https://stackoverflow.com/questions/61524982/ssh-agent-forwarding-into-docker-compose-environment-is-not-working
 - Docker compose on remote host: https://www.docker.com/blog/how-to-deploy-on-remote-docker-hosts-with-docker-compose/
 - Push image to private repository: https://stackoverflow.com/questions/28349392/how-to-push-a-docker-image-to-a-private-repository
 - Access to private repositories: https://www.baeldung.com/linux/docker-compose-private-repositories
