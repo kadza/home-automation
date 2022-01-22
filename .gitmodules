@@ -1,0 +1,3 @@
+[submodule "src/node-red/flows"]
+	path = src/node-red/flows
+	url = https://github.com/kadza/home-node-red.git
