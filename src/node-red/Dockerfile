@@ -20,8 +20,8 @@ RUN npm link node-red-contrib-komfovent
 #       copy your settings and flows files to that volume instead.
 USER node-red
 COPY settings.js /data/settings.js
-COPY flows /data/projects/home-automation/
-USER 0
-RUN mkdir /data/projects/.sshkeys
-RUN chown node-red:node-red /data/projects/.sshkeys
-USER node-red
+COPY projects /data/projects/
+COPY .config.nodes.json /data/.config.nodes.json
+COPY .config.projects.json /data/.config.projects.json
+COPY .config.users.json /data/.config.users.json
+COPY package.json /data/package.json
