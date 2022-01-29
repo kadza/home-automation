@@ -1,7 +1,6 @@
 {
     "projects": {
         "home": {
-            "credentialSecret": "7a88e2f5e3243c64c50be0f737422e009379a871304bcda7a7bcf017cdd9ce24"
         }
     },
     "activeProject": "home"
