@@ -3,14 +3,10 @@
     "description": "A Node-RED Project",
     "version": "0.0.1",
     "private": true,
-    "scripts": {
-        "start": "node $NODE_OPTIONS node_modules/node-red/red.js $FLOWS"
-    },
     "dependencies": {
-        "node-red": "2.0.6",
-        "node-red-contrib-ampio": "0.3.0",
         "node-red-contrib-blindcontroller": "4.8.6",
         "node-red-contrib-influxdb": "0.6.1",
+        "node-red-contrib-komfovent": "0.3.3",
         "node-red-contrib-sunpos": "1.4.1",
         "node-red-node-email": "1.12.3",
         "node-red-node-openweathermap": "0.5.0"
