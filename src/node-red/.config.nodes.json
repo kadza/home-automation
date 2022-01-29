@@ -498,6 +498,47 @@
             }
         }
     },
+    "node-red-contrib-komfovent": {
+        "name": "node-red-contrib-komfovent",
+        "version": "0.3.3",
+        "local": false,
+        "user": false,
+        "nodes": {
+            "KomfoventNode": {
+                "name": "KomfoventNode",
+                "types": [
+                    "komfoventConfig"
+                ],
+                "enabled": true,
+                "local": false,
+                "user": false,
+                "module": "node-red-contrib-komfovent",
+                "file": "/usr/src/node-red/node_modules/node-red-contrib-komfovent/komfnodes/config.js"
+            },
+            "KomfoventConfig": {
+                "name": "KomfoventConfig",
+                "types": [
+                    "komfoventNodeSet"
+                ],
+                "enabled": true,
+                "local": false,
+                "user": false,
+                "module": "node-red-contrib-komfovent",
+                "file": "/usr/src/node-red/node_modules/node-red-contrib-komfovent/komfnodes/setter.js"
+            },
+            "KomfoVentNodeGet": {
+                "name": "KomfoVentNodeGet",
+                "types": [
+                    "komfoventNodeGet"
+                ],
+                "enabled": true,
+                "local": false,
+                "user": false,
+                "module": "node-red-contrib-komfovent",
+                "file": "/usr/src/node-red/node_modules/node-red-contrib-komfovent/komfnodes/getter.js"
+            }
+        }
+    },
     "node-red-contrib-sunpos": {
         "name": "node-red-contrib-sunpos",
         "version": "1.4.1",

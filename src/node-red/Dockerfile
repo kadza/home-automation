@@ -7,6 +7,8 @@ COPY --chown=node-red:node-red node-red-contrib-komfovent-0.3.3.tgz /data/projec
 RUN cd /data/projects/home && npm install node-red-contrib-komfovent@file:./node-red-contrib-komfovent.tgz
 COPY --chown=node-red:node-red projects/home/package.json /data/projects/home/package.json
 RUN cd /data/projects/home && npm install
+COPY --chown=node-red:node-red node-red-contrib-komfovent-0.3.3.tgz /data/node-red-contrib-komfovent.tgz
+RUN cd /data && npm install node-red-contrib-komfovent@file:./node-red-contrib-komfovent.tgz
 
 # USER 0
 # COPY node-red-contrib-komfovent-0.3.3.tgz .
@@ -19,3 +21,4 @@ COPY --chown=node-red:node-red .config.nodes.json /data/.config.nodes.json
 COPY --chown=node-red:node-red .config.projects.json /data/.config.projects.json
 COPY --chown=node-red:node-red .config.users.json /data/.config.users.json
 COPY --chown=node-red:node-red projects /data/projects/
+COPY --chown=node-red:node-red package.json /data/package.json
