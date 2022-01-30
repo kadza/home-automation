@@ -1,0 +1,6 @@
+[submodule "src/node-red-home"]
+	path = src/node-red-home
+	url = https://github.com/kadza/home-node-red.git
+[submodule "src/dev/node-red-contrib-komfovent"]
+	path = src/dev/node-red-contrib-komfovent
+	url = https://github.com/kadza/node-red-contrib-komfovent
