@@ -1,7 +1,7 @@
 version: "3.8"
 
 services:
-  verdaccio:
+  npm-registry:
     image: verdaccio/verdaccio:nightly-master
     container_name: npm-registry
     ports:
@@ -10,13 +10,23 @@ services:
       - npm-storage:/verdaccio/storage
       - npm-conf:/verdaccio/conf
 
+  node-red-catalogue:
+    image: kadzaa/node-red-catalogue:latest
+    container_name: node-red-catalogue
+    environment:
+      - "REGISTRY=npm-registry:4873"
+    depends_on:
+      - npm-registry
+    ports:
+      - "4874:4874"
+
   node-red-admin:
     image: kadzaa/node-red-admin:latest
     container_name: node-red-admin
     ports:
       - "1880:1880"
     env_file:
-      - /vagrant/.env
+      - .env
 
 volumes:
   npm-storage:

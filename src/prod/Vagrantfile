@@ -1,16 +1,18 @@
 Vagrant.configure("2") do |config|
     config.vagrant.plugins = ["vagrant-env", "vagrant-docker-compose"]
     config.vm.box = "ubuntu/bionic64"
+    config.vm.synced_folder "../bkp", "/vagrant/bkp"
     config.env.enable
 
-    config.vm.network "forwarded_port", guest: 1880, host: 1880, host_ip: "127.0.0.1", id: "node-red"
     config.vm.network "forwarded_port", guest: 3000, host: 3000, host_ip: "127.0.0.1", id: "grafana"
+    config.vm.network "forwarded_port", guest: 1880, host: 1880, host_ip: "127.0.0.1", id: "node-red-admin"
+
     config.vm.provision :docker
     config.vm.provision "shell", inline: "echo #{ENV['DOCKER_ACCESS_TOKEN']} | docker login --username kadzaa --password-stdin"
 
-    config.vm.provision "shell", inline: "apt-get update && apt-get install -q -y tmux byobu awscli"
-    config.vm.provision "shell", inline: "/vagrant/bkp/init.sh"
+    config.vm.provision "shell", inline: "apt-get update && apt-get install -q -y awscli npm"
 
+    config.vm.provision "shell", inline: "/vagrant/bkp/init.sh"
     config.vm.provision "shell", inline: "/vagrant/bkp/restore-influxdb.sh"
     config.vm.provision :docker_compose,
         yml: "/vagrant/docker-compose.yaml",
@@ -19,7 +21,4 @@ Vagrant.configure("2") do |config|
         project_name: "home-automation"
     config.vm.provision "shell", inline: "/vagrant/bkp/restore-grafana.sh"
     config.vm.provision "shell", inline: "/vagrant/bkp/cleanup.sh"
-
-    # It doesn't work, don't now why, I run byobu-enable after first vagrant ssh
-    config.vm.provision "shell", inline: "byobu-enable"
-  end
+end

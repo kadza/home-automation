@@ -376,6 +376,7 @@ module.exports = {
              * If not set, the following default order is used:
              */
             //categories: ['subflows', 'common', 'function', 'network', 'sequence', 'parser', 'storage'],
+            catalogues: [ 'http://localhost:4874/catalogue.json'],
         },
         projects: {
             /** To enable the Projects feature, set this value to true */

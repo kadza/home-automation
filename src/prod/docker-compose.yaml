@@ -25,11 +25,11 @@ services:
     volumes:
       - grafana-storage:/var/lib/grafana
 
-  nodered:
+  node-red-home:
     image: kadzaa/private:latest
-    container_name: node-red
+    container_name: node-red-home
     ports:
-      - "1880:1880"
+      - "1881:1881"
     env_file:
       - .env
     depends_on:
