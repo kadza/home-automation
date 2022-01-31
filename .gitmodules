@@ -1,6 +1,12 @@
-[submodule "src/node-red-home"]
-	path = src/node-red-home
-	url = https://github.com/kadza/home-node-red.git
 [submodule "src/dev/node-red-contrib-komfovent"]
 	path = src/dev/node-red-contrib-komfovent
 	url = https://github.com/kadza/node-red-contrib-komfovent
+[submodule "src/dev/node-red-private-catalogue-builder"]
+	path = src/dev/node-red-private-catalogue-builder
+	url = https://github.com/hardillb/node-red-private-catalogue-builder.git
+[submodule "src/dev/node-red-home/home-node-red"]
+	path = src/dev/node-red-home/home-node-red
+	url = https://github.com/kadza/home-node-red.git
+[submodule "src/dev/home-node-red"]
+	path = src/dev/home-node-red
+	url = https://github.com/kadza/home-node-red.git
