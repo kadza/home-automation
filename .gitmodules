@@ -3,7 +3,7 @@
 	url = https://github.com/kadza/node-red-contrib-komfovent
 [submodule "src/dev/node-red-private-catalogue-builder"]
 	path = src/dev/node-red-private-catalogue-builder
-	url = https://github.com/hardillb/node-red-private-catalogue-builder.git
+	url = https://github.com/kadza/node-red-private-catalogue-builder.git
 [submodule "src/dev/home-node-red"]
 	path = src/dev/home-node-red
 	url = https://github.com/kadza/home-node-red.git
