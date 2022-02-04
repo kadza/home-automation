@@ -29,7 +29,7 @@ services:
     image: kadzaa/private:latest
     container_name: node-red-home
     ports:
-      - "1881:1881"
+      - "1880:1880"
     env_file:
       - .env
     depends_on:

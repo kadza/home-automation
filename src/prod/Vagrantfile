@@ -5,12 +5,12 @@ Vagrant.configure("2") do |config|
     config.env.enable
 
     config.vm.network "forwarded_port", guest: 3000, host: 3000, host_ip: "127.0.0.1", id: "grafana"
-    config.vm.network "forwarded_port", guest: 1880, host: 1880, host_ip: "127.0.0.1", id: "node-red-admin"
+    config.vm.network "forwarded_port", guest: 1880, host: 1880, host_ip: "127.0.0.1", id: "node-red-home"
 
     config.vm.provision :docker
-    config.vm.provision "shell", inline: "echo #{ENV['DOCKER_ACCESS_TOKEN']} | docker login --username kadzaa --password-stdin"
+    config.vm.provision "shell", inline: "docker login --username kadzaa --password #{ENV['DOCKER_ACCESS_TOKEN']}"
 
-    config.vm.provision "shell", inline: "apt-get update && apt-get install -q -y awscli npm"
+    config.vm.provision "shell", inline: "apt-get update && apt-get install -q -y awscli"
 
     config.vm.provision "shell", inline: "/vagrant/bkp/init.sh"
     config.vm.provision "shell", inline: "/vagrant/bkp/restore-influxdb.sh"

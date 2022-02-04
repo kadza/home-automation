@@ -5,7 +5,7 @@ apt install npm
 npm view --registry http://localhost:4873
 
 vagrant@ubuntu-bionic:/vagrant/dev/node-red-contrib-komfovent$ cd ../node-red-private-catalogue-builder/
-vagrant@ubuntu-bionic:/vagrant/dev/node-red-private-catalogue-builder$ DOCKER_BUILDKIT=1 docker build . -t catalogue
+vagrant@ubuntu-bionic:/vagrant/dev/node-red-private-catalogue-builder$ DOCKER_BUILDKIT=1 docker build . -t kadzaa/node-red-catalogue:latest
 
 SSH agent configuration !!!
 
