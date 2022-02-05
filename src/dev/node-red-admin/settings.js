@@ -62,7 +62,6 @@ process.env.entrance_light_topic_from="ampio/from/87C7/state/o/1";
 process.env.entrance_light_topic_to="ampio/to/87C7/o/1/cmd";
 process.env.entrance_motion_sensor="ampio/from/7FA7/state/bi/1"
 
-
 module.exports = {
     /*******************************************************************************
      * Flow File and User Directory Settings
