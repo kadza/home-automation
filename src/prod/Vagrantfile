@@ -1,6 +1,6 @@
 Vagrant.configure("2") do |config|
     config.vagrant.plugins = ["vagrant-env", "vagrant-docker-compose"]
-    config.vm.box = "ubuntu/bionic64"
+    config.vm.box = "hashicorp/bionic64"
     config.vm.synced_folder "../bkp", "/vagrant/bkp"
     config.env.enable
 
